@@ -11,6 +11,7 @@
 		E733978E2ACB4CBC004B14E8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E733978D2ACB4CBC004B14E8 /* ContentView.swift */; };
 		E73397902ACB4CBF004B14E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E733978F2ACB4CBF004B14E8 /* Assets.xcassets */; };
 		E73397932ACB4CBF004B14E8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E73397922ACB4CBF004B14E8 /* Preview Assets.xcassets */; };
+		E733979B2ACB5B54004B14E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E733979A2ACB5B54004B14E8 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,8 @@
 		E733978D2ACB4CBC004B14E8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E733978F2ACB4CBF004B14E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E73397922ACB4CBF004B14E8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E73397992ACB583F004B14E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E733979A2ACB5B54004B14E8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +54,10 @@
 		E733978A2ACB4CBC004B14E8 /* SpendMateApp */ = {
 			isa = PBXGroup;
 			children = (
+				E733979E2ACB5D91004B14E8 /* Controller */,
+				E733979D2ACB5D6E004B14E8 /* Model */,
+				E733979C2ACB5D0E004B14E8 /* View */,
+				E73397992ACB583F004B14E8 /* Info.plist */,
 				E733978B2ACB4CBC004B14E8 /* SpendMateAppApp.swift */,
 				E733978D2ACB4CBC004B14E8 /* ContentView.swift */,
 				E733978F2ACB4CBF004B14E8 /* Assets.xcassets */,
@@ -65,6 +72,28 @@
 				E73397922ACB4CBF004B14E8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E733979C2ACB5D0E004B14E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E733979A2ACB5B54004B14E8 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E733979D2ACB5D6E004B14E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E733979E2ACB5D91004B14E8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E733979B2ACB5B54004B14E8 /* LaunchScreen.storyboard in Resources */,
 				E73397932ACB4CBF004B14E8 /* Preview Assets.xcassets in Resources */,
 				E73397902ACB4CBF004B14E8 /* Assets.xcassets in Resources */,
 			);
@@ -270,9 +300,13 @@
 				DEVELOPMENT_TEAM = P3SNLZLCKJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpendMateApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpendMate;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -299,9 +333,13 @@
 				DEVELOPMENT_TEAM = P3SNLZLCKJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpendMateApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpendMate;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
