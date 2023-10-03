@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "image": "image1",
+        "description": "Effortless Expense Management at Your Fingertips"
+    },
+    {
+        "id": 2,
+        "image": "image2",
+        "description": "Instantly record your expenses as they occur, ensuring that you have an up-to-date picture of your financial situation."
+    },
+    {
+        "id": 3,
+        "image": "image3",
+        "description": "Easily categorize your expenses, from groceries and utilities to entertainment and travel, helping you identify spending patterns."
+    }
+]
