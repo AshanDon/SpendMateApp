@@ -11,6 +11,7 @@ struct ExpensesView: View {
     
     // MARK: - PROPERTIES
     @State private var searchExpenses: String = ""
+    @State private var showAddExpenseView: Bool = false
     
     // MARK: - BODY
     var body: some View {
@@ -22,7 +23,9 @@ struct ExpensesView: View {
                 .navigationTitle("Expenses")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {}) {
+                        Button(action: {
+                            showAddExpenseView.toggle()
+                        }) {
                             Image(systemName: "plus.circle.fill")
                                 .font(.title2)
 
@@ -39,6 +42,9 @@ struct ExpensesView: View {
             } //: ZStack
         } //: Navigation Stack
         .searchable(text: $searchExpenses)
+        .sheet(isPresented: $showAddExpenseView) {
+            AddNewExpensesView()
+        }
     }
 }
 

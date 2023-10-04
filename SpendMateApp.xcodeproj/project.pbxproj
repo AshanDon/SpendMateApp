@@ -25,6 +25,7 @@
 		E7404B122ACCC58E008B49F1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B112ACCC58E008B49F1 /* MainView.swift */; };
 		E7404B142ACCC7E4008B49F1 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */; };
 		E76A10D82ACD98D40019BE05 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76A10D72ACD98D40019BE05 /* AlertView.swift */; };
+		E76A10DA2ACDBC380019BE05 /* AddNewExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76A10D92ACDBC380019BE05 /* AddNewExpensesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		E7404B112ACCC58E008B49F1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		E76A10D72ACD98D40019BE05 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		E76A10D92ACDBC380019BE05 /* AddNewExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExpensesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,10 +109,11 @@
 			children = (
 				E733978D2ACB4CBC004B14E8 /* WelcomeView.swift */,
 				E7404B0F2ACCB18F008B49F1 /* ExpensesView.swift */,
+				E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */,
 				E7404B112ACCC58E008B49F1 /* MainView.swift */,
+				E76A10D92ACDBC380019BE05 /* AddNewExpensesView.swift */,
 				E7404B082ACC9B0A008B49F1 /* SubView */,
 				E733979A2ACB5B54004B14E8 /* LaunchScreen.storyboard */,
-				E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E733978E2ACB4CBC004B14E8 /* WelcomeView.swift in Sources */,
+				E76A10DA2ACDBC380019BE05 /* AddNewExpensesView.swift in Sources */,
 				E7404B072ACC9639008B49F1 /* Intraduction.swift in Sources */,
 				E7404B122ACCC58E008B49F1 /* MainView.swift in Sources */,
 				E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */,
