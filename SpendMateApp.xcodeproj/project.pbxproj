@@ -21,6 +21,10 @@
 		E7404B0A2ACC9B38008B49F1 /* OnboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B092ACC9B38008B49F1 /* OnboardView.swift */; };
 		E7404B0C2ACC9D29008B49F1 /* Inter-VariableFont_slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7404B0B2ACC9D29008B49F1 /* Inter-VariableFont_slnt,wght.ttf */; };
 		E7404B0E2ACCA469008B49F1 /* InriaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7404B0D2ACCA469008B49F1 /* InriaSans-Bold.ttf */; };
+		E7404B102ACCB18F008B49F1 /* ExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B0F2ACCB18F008B49F1 /* ExpensesView.swift */; };
+		E7404B122ACCC58E008B49F1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B112ACCC58E008B49F1 /* MainView.swift */; };
+		E7404B142ACCC7E4008B49F1 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */; };
+		E76A10D82ACD98D40019BE05 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76A10D72ACD98D40019BE05 /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		E7404B092ACC9B38008B49F1 /* OnboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardView.swift; sourceTree = "<group>"; };
 		E7404B0B2ACC9D29008B49F1 /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-VariableFont_slnt,wght.ttf"; sourceTree = "<group>"; };
 		E7404B0D2ACCA469008B49F1 /* InriaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InriaSans-Bold.ttf"; sourceTree = "<group>"; };
+		E7404B0F2ACCB18F008B49F1 /* ExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesView.swift; sourceTree = "<group>"; };
+		E7404B112ACCC58E008B49F1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		E76A10D72ACD98D40019BE05 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				E733978D2ACB4CBC004B14E8 /* WelcomeView.swift */,
+				E7404B0F2ACCB18F008B49F1 /* ExpensesView.swift */,
+				E7404B112ACCC58E008B49F1 /* MainView.swift */,
 				E7404B082ACC9B0A008B49F1 /* SubView */,
 				E733979A2ACB5B54004B14E8 /* LaunchScreen.storyboard */,
+				E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -151,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				E7404B092ACC9B38008B49F1 /* OnboardView.swift */,
+				E76A10D72ACD98D40019BE05 /* AlertView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -233,7 +245,11 @@
 			files = (
 				E733978E2ACB4CBC004B14E8 /* WelcomeView.swift in Sources */,
 				E7404B072ACC9639008B49F1 /* Intraduction.swift in Sources */,
+				E7404B122ACCC58E008B49F1 /* MainView.swift in Sources */,
 				E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */,
+				E7404B102ACCB18F008B49F1 /* ExpensesView.swift in Sources */,
+				E76A10D82ACD98D40019BE05 /* AlertView.swift in Sources */,
+				E7404B142ACCC7E4008B49F1 /* CategoriesView.swift in Sources */,
 				E7404B032ACC93C8008B49F1 /* Constant.swift in Sources */,
 				E7404B0A2ACC9B38008B49F1 /* OnboardView.swift in Sources */,
 				E7404B052ACC93F5008B49F1 /* Extension.swift in Sources */,
@@ -377,6 +393,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -413,6 +430,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

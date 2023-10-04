@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct SpendMateAppApp: App {
+    
+    // MARK: - PROPERTIES
+    private let userIsActive = UserDefaults.standard.bool(forKey: "isActive")
+    
+    // MARK: - BODY
     var body: some Scene {
         WindowGroup {
-            WelcomeView()
+            if !userIsActive {
+                WelcomeView()
+            } else {
+                MainView()
+            }
         }
     }
 }

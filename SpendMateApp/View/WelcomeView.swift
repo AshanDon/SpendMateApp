@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WelcomeView: View {
+    
+    // MARK: - BODY
     var body: some View {
         ZStack {
             Color.accentColor.edgesIgnoringSafeArea(.all)
@@ -21,24 +23,7 @@ struct WelcomeView: View {
                 
                 Spacer()
                 
-                Button(action: {}) {
-                    HStack {
-                        Spacer()
-                        
-                        Text("Let's Go")
-                            .font(.custom("InriaSans-Bold", size: 22))
-                            .foregroundColor(.black)
-                        
-                        Spacer()
-                    }
-                } //LetsGo Button
-                .frame(height: 50, alignment: .center)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color("#D9D9D9"))
-                )
-                .padding(.horizontal, 42)
-                .padding(.vertical, 50)
+                BottomView()
             } //: VStack
         } //: ZStack
     }
@@ -95,5 +80,37 @@ struct MiddleView: View {
     func setupTabviewAppearance(){
         UIPageControl.appearance().currentPageIndicatorTintColor = .black
         UIPageControl.appearance().pageIndicatorTintColor = .white
+    }
+}
+
+
+// MARK: - Bottom View
+struct BottomView: View {
+    @State private var showMainView: Bool = false
+    
+    var body: some View {
+        Button(action: {
+            showMainView.toggle()
+        }) {
+            HStack {
+                Spacer()
+                
+                Text("Let's Go")
+                    .font(.custom("InriaSans-Bold", size: 22))
+                    .foregroundColor(.black)
+                
+                Spacer()
+            }
+        } //LetsGo Button
+        .frame(height: 50, alignment: .center)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color("#D9D9D9"))
+        )
+        .padding(.horizontal, 42)
+        .padding(.vertical, 50)
+        .fullScreenCover(isPresented: $showMainView) {
+            MainView()
+        }
     }
 }
