@@ -110,7 +110,7 @@ struct BottomView: View {
         .padding(.horizontal, 42)
         .padding(.vertical, 50)
         .fullScreenCover(isPresented: $showMainView) {
-            MainView()
+            SignInView()
         }
     }
 }
