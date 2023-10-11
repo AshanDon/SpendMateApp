@@ -21,6 +21,7 @@ struct BottomLineTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         VStack() {
             configuration
+                .padding(.leading, 6)
             Rectangle()
                 .frame(height: 1, alignment: .bottom)
                 .foregroundColor(lineColor)

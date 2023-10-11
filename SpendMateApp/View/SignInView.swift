@@ -19,6 +19,7 @@ struct SignInView: View {
     @State private var password: String = ""
     @State private var keyboardHeight: CGFloat = 0
     @State private var isHidePassword = false
+    @State private var showSignUpView: Bool = false
     
     @FocusState private var fieldfocus: InputFields?
     
@@ -52,34 +53,38 @@ struct SignInView: View {
                                 .lineLimit(0)
                                 .padding(.top, 40)
                             
-                            VStack(alignment: .leading, spacing: 5) {
+                            VStack(alignment: .leading, spacing: 7) {
                                 Text("Email")
                                     .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
                                     .foregroundColor(.black)
-                                    .multilineTextAlignment(.leading)
-                                    .padding(.leading, 10)
                                     
-                                TextField("example@gmail.com", text: $email)
-                                    .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
-                                    .keyboardType(.emailAddress)
-                                    .focused($fieldfocus, equals: .emailField)
-                                    .padding(10)
-                                    .textFieldStyle(BottomLineTextFieldStyle(lineColor: fieldfocus == .emailField ? .accentColor : .black))
+                                ZStack(alignment: .leading) {
+                                    if email.isEmpty {
+                                        Text("@gmail.com")
+                                            .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
+                                            .foregroundColor(Color.black.opacity(0.3))
+                                            .padding(.bottom, 6)
+                                            .padding(.leading, 4)
+                                    }
+                                    
+                                    TextField("", text: $email)
+                                        .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
+                                        .keyboardType(.emailAddress)
+                                        .focused($fieldfocus, equals: .emailField)
+                                        .textFieldStyle(BottomLineTextFieldStyle(lineColor: fieldfocus == .emailField ? .accentColor : .black))
+                                }
                             } //: Email Group
                             .padding(.top, 30)
                             
-                            VStack(alignment: .leading, spacing: 5) {
+                            VStack(alignment: .leading, spacing: 7) {
                                 Text("Password")
                                     .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
                                     .foregroundColor(.black)
-                                    .multilineTextAlignment(.leading)
-                                    .padding(.leading, 10)
                                     
                                 if isHidePassword {
-                                    TextField("********", text: $password)
+                                    TextField("", text: $password)
                                         .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
                                         .focused($fieldfocus, equals: .passwordField)
-                                        .padding(10)
                                         .textFieldStyle(BottomLineTextFieldStyle(lineColor: fieldfocus == .passwordField ? .accentColor : .black))
                                         .overlay {
                                             HStack {
@@ -97,27 +102,37 @@ struct SignInView: View {
                                             }
                                         }
                                 } else {
-                                    SecureField("********", text: $password)
-                                        .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
-                                        .focused($fieldfocus, equals: .passwordField)
-                                        .padding(10)
-                                        .textFieldStyle(BottomLineTextFieldStyle(lineColor: fieldfocus == .passwordField ? .accentColor : .black))
-                                        .overlay {
-                                            HStack {
-                                                Spacer()
-                                                
-                                                Button(action: {
-                                                    isHidePassword.toggle()
-                                                }) {
-                                                    Image(systemName:isHidePassword ? "eye.fill" : "eye.slash.fill")
-                                                        .imageScale(.medium)
-                                                        .foregroundColor(isHidePassword ? .accentColor : .black.opacity(0.5))
-                                                } // Right Button
-                                                .padding(.trailing, 10)
-                                                .padding(.bottom, 5)
-                                            }
+                                    ZStack(alignment: .leading) {
+                                        if password.isEmpty {
+                                            Text("********")
+                                                .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
+                                                .foregroundColor(Color.black.opacity(0.3))
+                                                .padding(.bottom, 6)
+                                                .padding(.leading, 6)
                                         }
-                                }
+                                        
+                                        SecureField("", text: $password)
+                                            .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
+                                            .focused($fieldfocus, equals: .passwordField)
+                                            .textFieldStyle(BottomLineTextFieldStyle(lineColor: fieldfocus == .passwordField ? .accentColor : .black))
+                                            .overlay {
+                                                HStack {
+                                                    Spacer()
+                                                    
+                                                    Button(action: {
+                                                        isHidePassword.toggle()
+                                                    }) {
+                                                        Image(systemName:isHidePassword ? "eye.fill" : "eye.slash.fill")
+                                                            .imageScale(.medium)
+                                                            .foregroundColor(isHidePassword ? .accentColor : .black.opacity(0.5))
+                                                    } // Right Button
+                                                    .padding(.trailing, 10)
+                                                    .padding(.bottom, 5)
+                                                }
+                                            }
+                                    }
+                                    }
+                                  
                             } //: Password Group
                             .padding(.top, 30)
                             
@@ -147,7 +162,7 @@ struct SignInView: View {
                             .disabled(disableSignInButton)
                             .padding(.top, 20)
                             
-                            HStack(alignment: .center, spacing: 2) {
+                            HStack(alignment: .center, spacing: 4) {
                                 
                                 Spacer()
                                 
@@ -156,7 +171,7 @@ struct SignInView: View {
                                     .foregroundColor(.black)
                                 
                                 Button("Sign Up") {
-                                    
+                                    showSignUpView.toggle()
                                 } //: SignUp Button
                                 .font(
                                     .custom("Inter-VariableFont_slnt,wght", size: 14)
@@ -181,6 +196,9 @@ struct SignInView: View {
         } //: ZStack
         .edgesIgnoringSafeArea(.bottom)
         .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
+        .fullScreenCover(isPresented: $showSignUpView) {
+            SignUpView()
+        }
     }
     
     

@@ -18,6 +18,7 @@ struct SpendMateAppApp: App {
         WindowGroup {
             if !userIsActive {
                 WelcomeView()
+                //SignUpView()
             } else {
                 MainView()
             }
