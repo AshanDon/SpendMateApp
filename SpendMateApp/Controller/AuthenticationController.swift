@@ -26,4 +26,9 @@ class AuthenticationController: ObservableObject {
           return false
         }
     }
+    
+    func signInUser() async throws -> Authentication {
+        let authData = try await Auth.auth().signIn(withEmail: user.email, password: user.password)
+        return Authentication(user: authData.user)
+    }
 }

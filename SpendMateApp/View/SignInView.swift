@@ -21,10 +21,15 @@ struct SignInView: View {
     @State private var isHidePassword = false
     @State private var showSignUpView: Bool = false
     @State private var showMainView: Bool = false
+    @State private var showAlert: Bool = false
+    @State private var alertMessage: String = ""
+    @State private var showLoadingView: Bool = false
     
     @FocusState private var fieldfocus: InputFields?
     
     @EnvironmentObject private var authController: AuthenticationController
+    
+    @AppStorage("CurrentUser") private var currentUser: String?
     
     // MARK: - BODY
     var body: some View {
@@ -150,7 +155,9 @@ struct SignInView: View {
                             } //: HStack
                             .padding(.top, 10)
                             
-                            Button(action: {}) {
+                            Button(action: {
+                                fetchSignInUser()
+                            }) {
                                 Text("Sign In")
                                     .font(.custom("Inter-VariableFont_slnt,wght", size: 20))
                                     .foregroundColor(.white)
@@ -222,6 +229,14 @@ struct SignInView: View {
         .fullScreenCover(isPresented: $showSignUpView) {
             SignUpView()
         }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Warning"), message: Text(alertMessage), dismissButton: .cancel())
+        }
+        .overlay{
+            if showLoadingView {
+                LoadingView()
+            }
+        }
     }
     
     
@@ -233,6 +248,33 @@ struct SignInView: View {
     // MARK: - FUNCTION
     private func updateUserActiveStatus(){
         UserDefaults.standard.setValue(true, forKey: "isActive")
+    }
+    
+    private func fetchSignInUser() {
+        Task {
+            showLoadingView.toggle()
+            
+            authController.user.email = email
+            authController.user.password = password
+            
+            do {
+                let user = try await authController.signInUser()
+                
+                if !user.uid.isEmpty {
+                    
+                    currentUser = user.uid
+                    
+                    showLoadingView.toggle()
+                    showMainView.toggle()
+                    
+                }
+            } catch {
+                alertMessage = "User not found. Please enter valied email or passowrd."
+                
+                showLoadingView.toggle()
+                showAlert.toggle()
+            }
+        }
     }
 }
 
