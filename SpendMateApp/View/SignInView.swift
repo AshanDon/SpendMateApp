@@ -20,8 +20,11 @@ struct SignInView: View {
     @State private var keyboardHeight: CGFloat = 0
     @State private var isHidePassword = false
     @State private var showSignUpView: Bool = false
+    @State private var showMainView: Bool = false
     
     @FocusState private var fieldfocus: InputFields?
+    
+    @EnvironmentObject private var authController: AuthenticationController
     
     // MARK: - BODY
     var body: some View {
@@ -195,6 +198,26 @@ struct SignInView: View {
             }
         } //: ZStack
         .edgesIgnoringSafeArea(.bottom)
+        .onAppear{
+            Task {
+                
+                updateUserActiveStatus()
+                
+                do {
+                    let isUserLog = try authController.getUserSignedIn()
+                    
+                    if isUserLog{
+                        showMainView.toggle()
+                    }
+                    
+                } catch {
+                    print("Error:- \(error.localizedDescription)")
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $showMainView) {
+            MainView()
+        }
         .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
         .fullScreenCover(isPresented: $showSignUpView) {
             SignUpView()
@@ -205,6 +228,11 @@ struct SignInView: View {
     // Disable SignIn Button
     var disableSignInButton: Bool{
         return email.isEmpty || password.isEmpty
+    }
+    
+    // MARK: - FUNCTION
+    private func updateUserActiveStatus(){
+        UserDefaults.standard.setValue(true, forKey: "isActive")
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ExpensesView: View {
     
@@ -24,7 +25,12 @@ struct ExpensesView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
-                            showAddExpenseView.toggle()
+                            //showAddExpenseView.toggle()
+                            do {
+                                try Auth.auth().signOut()
+                            } catch {
+                                
+                            }
                         }) {
                             Image(systemName: "plus.circle.fill")
                                 .font(.title2)

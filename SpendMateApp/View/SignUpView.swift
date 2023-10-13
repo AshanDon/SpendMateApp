@@ -14,6 +14,7 @@ struct SignUpView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     @State private var keyboardHeight: CGFloat = 0
+    @State private var isLoading: Bool = false
     
     // MARK: - BODY
     var body: some View {
@@ -53,10 +54,17 @@ struct SignUpView: View {
                     Spacer(minLength: keyboardHeight > 0 ? 250 : .nan)
                 
                     
-                    SignUpContent(presentation: presentationMode, keyboardHeight: $keyboardHeight)
+                    SignUpContent(presentation: presentationMode, keyboardHeight: $keyboardHeight, showLoading: $isLoading)
+                    
                 }) //: VStack
             )
+            
         } //: ZStack
+        .overlay {
+            if isLoading {
+                LoadingView()
+            }
+        }
         .edgesIgnoringSafeArea(.bottom)
         .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
     }
@@ -75,11 +83,37 @@ struct SignUpContent: View {
     @State private var disableButton = true
     @State private var passwordFieldForegroundColor: Color = .black
     @State private var emailFieldForegroundColor: Color = .black
+    @State private var showMainView: Bool = false
+    @State private var showAlert: Bool = false
+    @State private var alertMessage: String = ""
+    
     
     @FocusState private var fieldFocus: InputFields?
     
     @Binding var presentation: PresentationMode
     @Binding var keyboardHeight: CGFloat
+    @Binding var showLoading: Bool
+    
+    @EnvironmentObject private var authController: AuthenticationController
+    
+    // Check that text fields are empty.
+    private var isEmptyFields : Bool {
+        return email.isEmpty || password.isEmpty || rePassword.isEmpty
+    }
+    
+    // Check that both password fields are matched.
+    private var isPasswordMatched : Bool {
+        return password == rePassword ? true : false
+    }
+    
+    // Check the email validation
+    private var isValiedEmail: Bool {
+        if(email.range(of:"^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$", options: .regularExpression) != nil) {
+            return true
+        } else {
+            return false
+        }
+    }
     
     // MARK: - BODY
     var body: some View {
@@ -98,6 +132,7 @@ struct SignUpContent: View {
                         .foregroundColor(.black)
                     
                     ZStack(alignment: .leading) {
+                        
                         if email.isEmpty {
                             Text("@gmail.com")
                                 .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
@@ -110,16 +145,16 @@ struct SignUpContent: View {
                             .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
                             .foregroundColor(emailFieldForegroundColor)
                             .focused($fieldFocus, equals: .emailField)
-                            .keyboardType(.default)
+                            .keyboardType(.emailAddress)
                             .frame(height: 35)
                             .autocorrectionDisabled()
                             .textFieldStyle(BottomLineTextFieldStyle(lineColor: fieldFocus == .emailField ? .accentColor : emailFieldForegroundColor))
                             .onSubmit {
-                                if !email.isEmpty {
+                                if email.isEmpty {
                                     emailFieldForegroundColor = isValiedEmail ? .black : .red
                                 }
                             }
-                        
+                            .submitLabel(.next)
                     } //: ZStack
                 } //: Email
                 
@@ -145,6 +180,17 @@ struct SignUpContent: View {
                             .keyboardType(.default)
                             .frame(height: 35)
                             .textFieldStyle(BottomLineTextFieldStyle(lineColor: fieldFocus == .passwordField ? .accentColor : passwordFieldForegroundColor))
+                            .onSubmit {
+                                if password.count <= 5 {
+                                    
+                                    alertMessage = "The password must be 6 characters long or more."
+                                    
+                                    showAlert.toggle()
+                                    
+                                    password = ""
+                                }
+                            }
+                            .submitLabel(.next)
                     }
                 } //: Password
                 
@@ -181,11 +227,12 @@ struct SignUpContent: View {
                                     passwordFieldForegroundColor = .red
                                 }
                             }
+                            .submitLabel(.done)
                     }
                 } //: Re password
                 
                 Button(action: {
-                    
+                    fetchData()
                 }) {
                     HStack {
                         
@@ -232,25 +279,58 @@ struct SignUpContent: View {
             Color.white
                 .clipShape(CustomShape())
         )
-    }
-    
-    // Check that text fields are empty.
-    var isEmptyFields : Bool {
-        return email.isEmpty || password.isEmpty || rePassword.isEmpty
-    }
-    
-    // Check that both password fields are matched.
-    var isPasswordMatched : Bool {
-        return password == rePassword ? true : false
-    }
-    
-    // Check the email validation
-    var isValiedEmail: Bool {
-        if(email.range(of:"^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$", options: .regularExpression) != nil) {
-            return true
-        } else {
-            return false
+        .fullScreenCover(isPresented: $showMainView) {
+            MainView()
         }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Warning"), message: Text(alertMessage), dismissButton: .cancel())
+        }
+    }
+    
+    // MARK: - FUNCTION
+    
+    private func fetchData(){
+        Task {
+            showLoading = true
+            
+            do {
+                
+                authController.user.email = email
+                authController.user.password = password
+                
+                let result = try await authController.createUser()
+                
+                if !result.uid.isEmpty {
+                    
+                    showMainView.toggle()
+                    
+                    showLoading = false
+                    
+                } else {
+                    alertMessage = "User Not Created."
+                    
+                    showAlert.toggle()
+                    
+                    clearAllFields()
+                }
+            } catch {
+                
+                showLoading = false
+                
+                alertMessage = error.localizedDescription
+                
+                showAlert.toggle()
+                
+                clearAllFields()
+            }
+        }
+    }
+    
+    private func clearAllFields(){
+        email = ""
+        password = ""
+        rePassword = ""
+        disableButton.toggle()
     }
 }
 

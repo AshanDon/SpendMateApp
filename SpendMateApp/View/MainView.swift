@@ -29,15 +29,6 @@ struct MainView: View {
                     Text("Category")
                 }
         } //: TabView
-        .onAppear {
-            updateUserActiveStatus()
-        }
-    }
-    
-    
-    // MARK: - FUNCTION
-    private func updateUserActiveStatus(){
-        UserDefaults.standard.setValue(true, forKey: "isActive")
     }
 }
 
