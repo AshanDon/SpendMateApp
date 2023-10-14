@@ -12,6 +12,8 @@ struct MainView: View {
     // MARK: - PROPERTIES
     @State private var currentTab: String = "Expenses"
     
+    @AppStorage("ProfileComplete") private var isProfileComplete: Bool = false
+    
     // MARK: - BODY
     var body: some View {
         TabView(selection: $currentTab) {
@@ -28,7 +30,17 @@ struct MainView: View {
                     Image(systemName: "list.bullet.clipboard")
                     Text("Category")
                 }
+            
+            SettingsView()
+                .tag("Settings")
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
         } //: TabView
+        .onAppear{
+            currentTab = isProfileComplete ? "Expenses" : "Settings"
+        }
     }
 }
 

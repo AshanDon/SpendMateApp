@@ -18,22 +18,25 @@ struct SpendMateAppApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    @AppStorage("isUserSignIn") var isUserSignIn: Bool?
+    
     // MARK: - BODY
     var body: some Scene {
         WindowGroup {
             if userIsActive {
-                if delegate.isLoged {
-                    MainView()
-                        .environmentObject(authController)
-                } else {
-                    SignInView()
-                        .environmentObject(authController)
+                if let signIn = isUserSignIn {
+                    if signIn {
+                        MainView()
+                            .environmentObject(authController)
+                    } else {
+                        SignInView()
+                            .environmentObject(authController)
+                    }
                 }
             } else {
                 WelcomeView()
                     .environmentObject(authController)
             }
-            
         }
     }
 }
@@ -42,18 +45,9 @@ struct SpendMateAppApp: App {
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {
   
-  private let authController = AuthenticationController()
-  var isLoged: Bool = false
-    
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
       FirebaseApp.configure()
-      
-      do {
-         isLoged = try authController.getUserSignedIn()
-      } catch {
-          print("Error:- \(error.localizedDescription)")
-      }
       
     print("Configured Firebase..!")
     return true

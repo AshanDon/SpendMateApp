@@ -96,6 +96,8 @@ struct SignUpContent: View {
     
     @EnvironmentObject private var authController: AuthenticationController
     
+    @AppStorage("isUserSignIn") var isUserSignIn: Bool?
+    
     // Check that text fields are empty.
     private var isEmptyFields : Bool {
         return email.isEmpty || password.isEmpty || rePassword.isEmpty
@@ -302,6 +304,7 @@ struct SignUpContent: View {
                 
                 if !result.uid.isEmpty {
                     
+                    isUserSignIn = true
                     showMainView.toggle()
                     
                     showLoading = false

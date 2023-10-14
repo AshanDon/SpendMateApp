@@ -28,6 +28,11 @@
 		E7404B142ACCC7E4008B49F1 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */; };
 		E76A10D82ACD98D40019BE05 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76A10D72ACD98D40019BE05 /* AlertView.swift */; };
 		E76A10DA2ACDBC380019BE05 /* AddNewExpensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76A10D92ACDBC380019BE05 /* AddNewExpensesView.swift */; };
+		E78581D92AD9868600573FD8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78581D82AD9868600573FD8 /* SettingsView.swift */; };
+		E78CD9C12AD991040017ECF3 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E78CD9C02AD991040017ECF3 /* Roboto-Regular.ttf */; };
+		E78CD9C32AD9937C0017ECF3 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */; };
+		E78CD9C52AD9A2D00017ECF3 /* EmptyProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */; };
+		E78CD9C72AD9A5FC0017ECF3 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */; };
 		E7AE7FA82AD71700006B8C11 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE7FA72AD71700006B8C11 /* Authentication.swift */; };
 		E7AE7FAA2AD71751006B8C11 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */; };
 		E7AE7FAC2AD72134006B8C11 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */; };
@@ -62,6 +67,11 @@
 		E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		E76A10D72ACD98D40019BE05 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		E76A10D92ACDBC380019BE05 /* AddNewExpensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewExpensesView.swift; sourceTree = "<group>"; };
+		E78581D82AD9868600573FD8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E78CD9C02AD991040017ECF3 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProfileCard.swift; sourceTree = "<group>"; };
+		E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		E7AE7FA72AD71700006B8C11 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -137,6 +147,7 @@
 				E7BE07012AD4413B00D1F139 /* SignUpView.swift */,
 				E7404B082ACC9B0A008B49F1 /* SubView */,
 				E733979A2ACB5B54004B14E8 /* LaunchScreen.storyboard */,
+				E78581D82AD9868600573FD8 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,7 +175,9 @@
 				E7404B0D2ACCA469008B49F1 /* InriaSans-Bold.ttf */,
 				E7404B0B2ACC9D29008B49F1 /* Inter-VariableFont_slnt,wght.ttf */,
 				E73397A02ACB666A004B14E8 /* InriaSerif-Bold.ttf */,
+				E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */,
 				E73397A22ACB69D5004B14E8 /* InknutAntiqua-Bold.ttf */,
+				E78CD9C02AD991040017ECF3 /* Roboto-Regular.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -193,6 +206,8 @@
 				E76A10D72ACD98D40019BE05 /* AlertView.swift */,
 				E72B64AE2ACDFEB40017BB7C /* AddNewCategoryView.swift */,
 				E7DDF0752AD80DA9006549C0 /* LoadingView.swift */,
+				E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */,
+				E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -265,7 +280,9 @@
 			files = (
 				E733979B2ACB5B54004B14E8 /* LaunchScreen.storyboard in Resources */,
 				E7404B0C2ACC9D29008B49F1 /* Inter-VariableFont_slnt,wght.ttf in Resources */,
+				E78CD9C12AD991040017ECF3 /* Roboto-Regular.ttf in Resources */,
 				E7AE7FAC2AD72134006B8C11 /* GoogleService-Info.plist in Resources */,
+				E78CD9C32AD9937C0017ECF3 /* Roboto-Bold.ttf in Resources */,
 				E7404B002ACC9344008B49F1 /* Intraduction.json in Resources */,
 				E73397A32ACB69D5004B14E8 /* InknutAntiqua-Bold.ttf in Resources */,
 				E7404B0E2ACCA469008B49F1 /* InriaSans-Bold.ttf in Resources */,
@@ -285,6 +302,8 @@
 				E733978E2ACB4CBC004B14E8 /* WelcomeView.swift in Sources */,
 				E76A10DA2ACDBC380019BE05 /* AddNewExpensesView.swift in Sources */,
 				E7404B072ACC9639008B49F1 /* Intraduction.swift in Sources */,
+				E78CD9C52AD9A2D00017ECF3 /* EmptyProfileCard.swift in Sources */,
+				E78581D92AD9868600573FD8 /* SettingsView.swift in Sources */,
 				E7404B122ACCC58E008B49F1 /* MainView.swift in Sources */,
 				E7DDF0762AD80DA9006549C0 /* LoadingView.swift in Sources */,
 				E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */,
@@ -295,6 +314,7 @@
 				E7404B032ACC93C8008B49F1 /* Constant.swift in Sources */,
 				E7404B0A2ACC9B38008B49F1 /* OnboardView.swift in Sources */,
 				E7BE07022AD4413B00D1F139 /* SignUpView.swift in Sources */,
+				E78CD9C72AD9A5FC0017ECF3 /* ProfileCard.swift in Sources */,
 				E7404B052ACC93F5008B49F1 /* Extension.swift in Sources */,
 				E7AE7FAA2AD71751006B8C11 /* AuthenticationController.swift in Sources */,
 				E72B64AF2ACDFEB40017BB7C /* AddNewCategoryView.swift in Sources */,

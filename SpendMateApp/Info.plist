@@ -6,6 +6,8 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Roboto-Regular.ttf</string>
+		<string>Roboto-Bold.ttf</string>
 		<string>InriaSans-Bold.ttf</string>
 		<string>Inter-VariableFont_slnt,wght.ttf</string>
 		<string>InknutAntiqua-Bold.ttf</string>

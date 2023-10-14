@@ -30,6 +30,7 @@ struct SignInView: View {
     @EnvironmentObject private var authController: AuthenticationController
     
     @AppStorage("CurrentUser") private var currentUser: String?
+    @AppStorage("isUserSignIn") var isUserSignIn: Bool?
     
     // MARK: - BODY
     var body: some View {
@@ -263,6 +264,7 @@ struct SignInView: View {
                 if !user.uid.isEmpty {
                     
                     currentUser = user.uid
+                    isUserSignIn = true
                     
                     showLoadingView.toggle()
                     showMainView.toggle()

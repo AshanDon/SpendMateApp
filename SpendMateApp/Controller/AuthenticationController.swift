@@ -15,8 +15,8 @@ class AuthenticationController: ObservableObject {
     var user = Authentication(id: "", email: "", password: "")
     
     func createUser() async throws -> Authentication {
-        let authData = try await Auth.auth().createUser(withEmail: user.email, password: user.password)
-        return Authentication(user: authData.user)
+        let authData = try await Auth.auth().createUser(withEmail: user.email, password: user.password).user
+        return Authentication(id: authData.uid, email: authData.email!, password: "")
     }
     
     func getUserSignedIn() throws -> Bool {
@@ -28,7 +28,16 @@ class AuthenticationController: ObservableObject {
     }
     
     func signInUser() async throws -> Authentication {
-        let authData = try await Auth.auth().signIn(withEmail: user.email, password: user.password)
-        return Authentication(user: authData.user)
+        let authData = try await Auth.auth().signIn(withEmail: user.email, password: user.password).user
+        return Authentication(id: authData.uid, email: authData.email!, password: "")
+    }
+    
+    func getCurrentUser() throws -> Authentication {
+        let user = Auth.auth().currentUser
+        return Authentication(id: user!.uid, email: user!.email!, password: "")
+    }
+    
+    func signOutCurrentUser() throws{
+        try Auth.auth().signOut()
     }
 }
