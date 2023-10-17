@@ -15,27 +15,29 @@ struct SpendMateAppApp: App {
     private let userIsActive = UserDefaults.standard.bool(forKey: "isActive")
     
     @StateObject private var authController = AuthenticationController()
+    @StateObject private var profiController = ProfileController()
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @AppStorage("isUserSignIn") var isUserSignIn: Bool?
-    
+    @AppStorage("isUserSignIn") var isUserSignIn: Bool = false
+   
     // MARK: - BODY
     var body: some Scene {
         WindowGroup {
             if userIsActive {
-                if let signIn = isUserSignIn {
-                    if signIn {
-                        MainView()
-                            .environmentObject(authController)
-                    } else {
-                        SignInView()
-                            .environmentObject(authController)
-                    }
+                if isUserSignIn {
+                    MainView()
+                        .environmentObject(authController)
+                        .environmentObject(profiController)
+                } else {
+                    SignInView()
+                        .environmentObject(authController)
+                        .environmentObject(profiController)
                 }
             } else {
                 WelcomeView()
                     .environmentObject(authController)
+                    .environmentObject(profiController)
             }
         }
     }

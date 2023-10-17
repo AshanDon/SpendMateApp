@@ -10,30 +10,52 @@ import SwiftUI
 struct SettingsView: View {
     
     // MARK: - PROPERTIES
-    @AppStorage("ProfileComplete") private var isProfileComplete: Bool = false
     @AppStorage("isUserSignIn") var isUserSignIn: Bool?
+    @AppStorage("ProfileComplete") private var isProfileComplete: Bool = false
     
     @State private var showSignOutAlert: Bool = false
     @State private var showLoadingView: Bool = false
     @State private var showSignInView: Bool = false
+    @State private var showNewProfileView: Bool = false
+    @State private var userId: String = ""
+    @State private var userName: String = ""
+    @State private var email: String = ""
+    @State private var profileCardOpacity: Double = 0
     
     @EnvironmentObject private var authController: AuthenticationController
+    @EnvironmentObject private var profileController: ProfileController
     
     // MARK: - BODY
     var body: some View {
         NavigationStack {
-            
-            
             List {
-                Section {
-                    Group {
-                        if isProfileComplete {
-                            ProfileCard()
-                        } else {
-                            EmptyProfileCard()
-                        }
-                    } // Profile Group<#code#>
-                } //: Profile Data Section
+                if !isProfileComplete {
+                    Section {
+                        ProfileCard(userId: $userId, email: $email, viewOpacitiy: $profileCardOpacity)
+                            .opacity(profileCardOpacity == 0 ? 0 : 1)
+                            .overlay {
+                                ZStack(alignment: .center) {
+                                    VStack(alignment: .center, spacing: 4) {
+                                        ProgressView()
+                                            .tint(.accentColor)
+                                            .scaleEffect(1)
+                                            .progressViewStyle(CircularProgressViewStyle())
+                                        
+                                        Text("Loading...")
+                                            .font(.custom("Roboto-Regular", size: 12))
+                                            .foregroundColor(.accentColor)
+                                        
+                                    } //: VStack
+                                } //: ZStack
+                                .opacity(profileCardOpacity == 0 ? 1 : 0)
+                            }
+                    }
+                } else {
+                    Section {
+                        EmptyProfileCard(showNewProfile: $showNewProfileView)
+                    }
+                }
+                
                 
                 Section("Profile") {
                     Button(action: {}) {
@@ -114,6 +136,9 @@ struct SettingsView: View {
             } //: List
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
+            .navigationDestination(isPresented: $showNewProfileView) {
+                NewProfile()
+            }
         } //: NavigationStack
         .alert(isPresented: $showSignOutAlert) {
             Alert(
@@ -137,6 +162,11 @@ struct SettingsView: View {
         .fullScreenCover(isPresented: $showSignInView) {
             SignInView()
         }
+        .onAppear{
+            DispatchQueue.main.async {
+                loadAuthenticationData()
+            }
+        }
     }
     
     // MARK: - FUNCTION
@@ -151,6 +181,18 @@ struct SettingsView: View {
             
             showLoadingView.toggle()
             isUserSignIn = false
+        }
+    }
+    
+    private func loadAuthenticationData(){
+        Task {
+            do {
+                let auth = try authController.getCurrentUser()
+                userId = auth.uid
+                email = auth.email
+            } catch {
+                print("Error:- \(error.localizedDescription)")
+            }
         }
     }
 }

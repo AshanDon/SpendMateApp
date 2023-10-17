@@ -83,7 +83,6 @@ struct SignUpContent: View {
     @State private var disableButton = true
     @State private var passwordFieldForegroundColor: Color = .black
     @State private var emailFieldForegroundColor: Color = .black
-    @State private var showMainView: Bool = false
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     
@@ -96,7 +95,7 @@ struct SignUpContent: View {
     
     @EnvironmentObject private var authController: AuthenticationController
     
-    @AppStorage("isUserSignIn") var isUserSignIn: Bool?
+    @AppStorage("ProfileComplete") private var isProfileComplete: Bool?
     
     // Check that text fields are empty.
     private var isEmptyFields : Bool {
@@ -281,9 +280,6 @@ struct SignUpContent: View {
             Color.white
                 .clipShape(CustomShape())
         )
-        .fullScreenCover(isPresented: $showMainView) {
-            MainView()
-        }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Warning"), message: Text(alertMessage), dismissButton: .cancel())
         }
@@ -304,8 +300,8 @@ struct SignUpContent: View {
                 
                 if !result.uid.isEmpty {
                     
-                    isUserSignIn = true
-                    showMainView.toggle()
+                    isProfileComplete = false
+                    presentation.dismiss()
                     
                     showLoading = false
                     

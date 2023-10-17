@@ -14,6 +14,8 @@ struct EmptyProfileCard: View {
     
     @State private var email: String = ""
     
+    @Binding var showNewProfile: Bool
+    
     // MARK: - BODY
     var body: some View {
         VStack(alignment: .center) {
@@ -37,7 +39,9 @@ struct EmptyProfileCard: View {
                 .frame(height: 22)
                 .padding(.top, 10)
             
-            Button(action: {}) {
+            Button(action: {
+                showNewProfile.toggle()
+            }) {
                 Text("Complete Profile")
                     .font(.custom("Roboto-Bold", size: 12))
                     .foregroundColor(.white)
@@ -75,7 +79,7 @@ struct EmptyProfileCard: View {
 
 struct EmptyProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyProfileCard()
+        EmptyProfileCard(showNewProfile: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }
