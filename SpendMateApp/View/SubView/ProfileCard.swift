@@ -55,7 +55,7 @@ struct ProfileCard: View {
         .opacity(viewOpacitiy)
         .padding(.vertical, 30)
         .onAppear {
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 loadCurrentUserData()
             }
         }

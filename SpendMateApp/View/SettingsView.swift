@@ -15,7 +15,7 @@ struct SettingsView: View {
     
     @State private var showSignOutAlert: Bool = false
     @State private var showLoadingView: Bool = false
-    @State private var showSignInView: Bool = false
+    @State private var showUpdateProfileView: Bool = false
     @State private var showNewProfileView: Bool = false
     @State private var userId: String = ""
     @State private var userName: String = ""
@@ -57,18 +57,22 @@ struct SettingsView: View {
                 }
                 
                 
-                Section("Profile") {
-                    Button(action: {}) {
-                        HStack {
-                            Text(verbatim: "Update Profile")
-                                .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
-                                .foregroundColor(Color("#666666"))
-                                .lineSpacing(10)
-                            
-                            Spacer()
+                if !isProfileComplete {
+                    Section("Profile") {
+                        Button(action: {
+                            showUpdateProfileView.toggle()
+                        }) {
+                            HStack {
+                                Text(verbatim: "Update Profile")
+                                    .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
+                                    .foregroundColor(Color("#666666"))
+                                    .lineSpacing(10)
+                                
+                                Spacer()
+                            }
                         }
-                    }
-                } //: Profile Section
+                    } //: Profile Section
+                }
                 
                 Section("Account") {
                     Button(action: {}) {
@@ -139,6 +143,9 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $showNewProfileView) {
                 NewProfile()
             }
+            .navigationDestination(isPresented: $showUpdateProfileView) {
+                UpdateProfile(showView: $showUpdateProfileView)
+            }
         } //: NavigationStack
         .alert(isPresented: $showSignOutAlert) {
             Alert(
@@ -159,11 +166,8 @@ struct SettingsView: View {
                 LoadingView()
             }
         }
-        .fullScreenCover(isPresented: $showSignInView) {
-            SignInView()
-        }
         .onAppear{
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 loadAuthenticationData()
             }
         }

@@ -81,4 +81,49 @@ class ProfileController: ObservableObject {
     private func getProfileImage(imagePath: String) async throws -> Data {
         try await profileImageReference.child(imagePath).data(maxSize: 3 * 1024 * 1024)
     }
+    
+    private func updateProfileImage(userId: String, imageData: Data) async throws -> Bool {
+        
+        let meta = StorageMetadata()
+        meta.contentType = "image/jpeg"
+        
+        let path = "\(userId).jpeg"
+        
+        let returnMetaData = try await profileImageReference
+            .child(path)
+            .putDataAsync(imageData, metadata: meta)
+        
+        guard let path = returnMetaData.path else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return path.isEmpty ? false : true
+    }
+    
+    func updateProfileData(profile: Profile) async throws {
+        
+        let updateProfile = try await updateProfileImage(userId: profile.user_id, imageData: profile.profile_image)
+        
+        if updateProfile {
+            
+            let profileData: [String:Any] = [
+                "profile_id": profile.user_id,
+                "first_name": profile.first_name,
+                "last_name": profile.last_name,
+                "image_url": "\(profile.user_id).jpeg",
+                "date_created": Timestamp()
+            ]
+            
+            let mergeFields: [String] = [
+                "first_name",
+                "last_name",
+                "image_url",
+                "date_created"
+            ]
+            
+            try await db.collection("profile")
+                .document(profile.user_id)
+                .setData(profileData, mergeFields: mergeFields)
+        }
+    }
 }

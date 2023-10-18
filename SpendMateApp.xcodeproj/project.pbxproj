@@ -45,6 +45,7 @@
 		E7AE7FB12AD722E7006B8C11 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E7AE7FB02AD722E7006B8C11 /* FirebaseAnalyticsSwift */; };
 		E7AE7FB32AD722E7006B8C11 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E7AE7FB22AD722E7006B8C11 /* FirebaseAuth */; };
 		E7BE07022AD4413B00D1F139 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE07012AD4413B00D1F139 /* SignUpView.swift */; };
+		E7C811C72ADF211500BC824D /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C811C62ADF211500BC824D /* UpdateProfile.swift */; };
 		E7CF658C2ADEA4470036FE3D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E7CF658B2ADEA4470036FE3D /* FirebaseStorage */; };
 		E7DDF0762AD80DA9006549C0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDF0752AD80DA9006549C0 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,7 @@
 		E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7BE07012AD4413B00D1F139 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		E7C811C62ADF211500BC824D /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
 		E7DDF0752AD80DA9006549C0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 				E733979A2ACB5B54004B14E8 /* LaunchScreen.storyboard */,
 				E78581D82AD9868600573FD8 /* SettingsView.swift */,
 				E77AB6AB2ADACEE600DC4224 /* NewProfile.swift */,
+				E7C811C62ADF211500BC824D /* UpdateProfile.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */,
 				E7404B102ACCB18F008B49F1 /* ExpensesView.swift in Sources */,
 				E77AB6B52ADB208400DC4224 /* ProfileController.swift in Sources */,
+				E7C811C72ADF211500BC824D /* UpdateProfile.swift in Sources */,
 				E76A10D82ACD98D40019BE05 /* AlertView.swift in Sources */,
 				E7404B142ACCC7E4008B49F1 /* CategoriesView.swift in Sources */,
 				E7AE7FA82AD71700006B8C11 /* Authentication.swift in Sources */,
