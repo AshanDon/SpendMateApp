@@ -21,6 +21,12 @@ struct SettingsView: View {
     @State private var userName: String = ""
     @State private var email: String = ""
     @State private var profileCardOpacity: Double = 0
+    @State private var showUpdateEmailView: Bool = false
+    @State private var isEmailVerified: Bool = false
+    @State private var showAlertView: Bool = false
+    @State private var alertMessage: String = ""
+    @State private var alertTitle: AlertTitle = .success
+    @State private var showDeleteAlert: Bool = false
     
     @EnvironmentObject private var authController: AuthenticationController
     @EnvironmentObject private var profileController: ProfileController
@@ -31,7 +37,10 @@ struct SettingsView: View {
             List {
                 if !isProfileComplete {
                     Section {
-                        ProfileCard(userId: $userId, email: $email, viewOpacitiy: $profileCardOpacity)
+                        ProfileCard(userId: $userId,
+                                    email: $email,
+                                    viewOpacitiy: $profileCardOpacity,
+                                    showVerifyEmailButton: $isEmailVerified)
                             .opacity(profileCardOpacity == 0 ? 0 : 1)
                             .overlay {
                                 ZStack(alignment: .center) {
@@ -75,9 +84,17 @@ struct SettingsView: View {
                 }
                 
                 Section("Account") {
-                    Button(action: {}) {
+                    Button(action: {
+                        if isEmailVerified {
+                            showUpdateEmailView.toggle()
+                        } else {
+                            alertTitle = .warning
+                            alertMessage = "You have to verify your email address before changing the email address."
+                            showAlertView.toggle()
+                        }
+                    }) {
                         HStack {
-                            Text(verbatim: "Update Email")
+                            Text(verbatim: "Change Email")
                                 .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
                                 .foregroundColor(Color("#666666"))
                                 .lineSpacing(10)
@@ -85,6 +102,12 @@ struct SettingsView: View {
                             Spacer()
                         }
                     } //: Edit email
+                    .alert(isPresented: $showAlertView) {
+                        Alert(title: Text(alertTitle.rawValue),
+                              message: Text(alertMessage),
+                              dismissButton: .default(Text("Ok"))
+                        )
+                    }
                     
                     Button(action: {}) {
                         HStack {
@@ -97,7 +120,11 @@ struct SettingsView: View {
                         }
                     } //: Update Password
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        alertTitle = .warning
+                        alertMessage = "All your information will be removed from the app. Are you sure you want to delete your account?"
+                        showDeleteAlert.toggle()
+                    }) {
                         HStack {
                             Text(verbatim: "Delete Account")
                                 .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
@@ -107,6 +134,17 @@ struct SettingsView: View {
                             Spacer()
                         }
                     } //: Delete Account
+                    .alert(isPresented: $showDeleteAlert) {
+                        Alert(title: Text(alertTitle.rawValue),
+                              message: Text(alertMessage),
+                              primaryButton: .destructive(Text("Delete")){
+                                DispatchQueue.main.async {
+                                    showLoadingView.toggle()
+                                    deleteAccount()
+                                }
+                              },
+                              secondaryButton: .cancel())
+                    }
                     
                 } //: Account Section
                 
@@ -146,10 +184,13 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $showUpdateProfileView) {
                 UpdateProfile(showView: $showUpdateProfileView)
             }
+            .navigationDestination(isPresented: $showUpdateEmailView) {
+                UpdateEmailView()
+            }
         } //: NavigationStack
         .alert(isPresented: $showSignOutAlert) {
             Alert(
-                title: Text(""),
+                title: Text("Attention!"),
                 message: Text("Are you sure you want to sign-up?"),
                 primaryButton: .destructive(Text("Yes")) {
                     showLoadingView.toggle()
@@ -169,6 +210,7 @@ struct SettingsView: View {
         .onAppear{
             DispatchQueue.global(qos: .background).async {
                 loadAuthenticationData()
+                checkedEmailVerified()
             }
         }
     }
@@ -196,6 +238,31 @@ struct SettingsView: View {
                 email = auth.email
             } catch {
                 print("Error:- \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func checkedEmailVerified(){
+        Task {
+            do {
+                isEmailVerified = try await authController.isEmailVerified()
+            } catch {
+                print("Error:- \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func deleteAccount(){
+        Task {
+            do {
+                try await authController.deleteProfile()
+                
+                signOutUser()
+                
+            } catch {
+                alertTitle = .error
+                alertMessage = error.localizedDescription
+                showAlertView.toggle()
             }
         }
     }

@@ -40,4 +40,47 @@ class AuthenticationController: ObservableObject {
     func signOutCurrentUser() throws{
         try Auth.auth().signOut()
     }
+    
+    func updateEmailAddress(newEmail: String) async throws {
+        
+        guard let currentUser = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        
+        try await currentUser.sendEmailVerification(beforeUpdatingEmail: newEmail)
+    }
+    
+    func reAuthenticationUser(email: String, password: String) async throws {
+        guard let currentUser = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        
+        let credential = EmailAuthProvider.credential(withEmail: email, password: password)
+        
+        try await currentUser.reauthenticate(with: credential)
+    }
+    
+    func isEmailVerified() async throws -> Bool{
+        guard let currentUser = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return currentUser.isEmailVerified
+    }
+    
+    func sendEmailVerificationLink() async throws {
+        guard let currentUser = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        
+        try await currentUser.sendEmailVerification()
+    }
+    
+    func deleteProfile() async throws {
+        guard let currentUser = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        
+        try await currentUser.delete()
+    }
 }

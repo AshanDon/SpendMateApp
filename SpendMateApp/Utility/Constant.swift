@@ -22,6 +22,7 @@ struct BottomLineTextFieldStyle: TextFieldStyle {
         VStack() {
             configuration
                 .padding(.leading, 6)
+            
             Rectangle()
                 .frame(height: 1, alignment: .bottom)
                 .foregroundColor(lineColor)

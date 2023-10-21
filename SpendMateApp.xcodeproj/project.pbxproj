@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E70AF1C42AE00A2300DF3619 /* UpdateEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF1C32AE00A2300DF3619 /* UpdateEmailView.swift */; };
 		E72B64AF2ACDFEB40017BB7C /* AddNewCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B64AE2ACDFEB40017BB7C /* AddNewCategoryView.swift */; };
 		E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E733978B2ACB4CBC004B14E8 /* SpendMateAppApp.swift */; };
 		E733978E2ACB4CBC004B14E8 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E733978D2ACB4CBC004B14E8 /* WelcomeView.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E70AF1C32AE00A2300DF3619 /* UpdateEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailView.swift; sourceTree = "<group>"; };
 		E72B64AE2ACDFEB40017BB7C /* AddNewCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryView.swift; sourceTree = "<group>"; };
 		E73397882ACB4CBC004B14E8 /* SpendMateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendMateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E733978B2ACB4CBC004B14E8 /* SpendMateAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendMateAppApp.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				E78581D82AD9868600573FD8 /* SettingsView.swift */,
 				E77AB6AB2ADACEE600DC4224 /* NewProfile.swift */,
 				E7C811C62ADF211500BC824D /* UpdateProfile.swift */,
+				E70AF1C32AE00A2300DF3619 /* UpdateEmailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				E7404B052ACC93F5008B49F1 /* Extension.swift in Sources */,
 				E7AE7FAA2AD71751006B8C11 /* AuthenticationController.swift in Sources */,
 				E77AB6B32ADB1D8200DC4224 /* Profile.swift in Sources */,
+				E70AF1C42AE00A2300DF3619 /* UpdateEmailView.swift in Sources */,
 				E72B64AF2ACDFEB40017BB7C /* AddNewCategoryView.swift in Sources */,
 				E735BBDF2ACF200B00531CB2 /* SignInView.swift in Sources */,
 			);
