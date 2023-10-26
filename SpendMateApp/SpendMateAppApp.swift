@@ -16,6 +16,7 @@ struct SpendMateAppApp: App {
     
     @StateObject private var authController = AuthenticationController()
     @StateObject private var profiController = ProfileController()
+    @StateObject private var categoryController = CategoryController()
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
@@ -29,15 +30,19 @@ struct SpendMateAppApp: App {
                     MainView()
                         .environmentObject(authController)
                         .environmentObject(profiController)
+                        .environmentObject(categoryController)
+                    
                 } else {
                     SignInView()
                         .environmentObject(authController)
                         .environmentObject(profiController)
+                        .environmentObject(categoryController)
                 }
             } else {
                 WelcomeView()
                     .environmentObject(authController)
                     .environmentObject(profiController)
+                    .environmentObject(categoryController)
             }
         }
     }

@@ -14,6 +14,12 @@ struct AddNewCategoryView: View {
     @State private var category: String = ""
     @FocusState private var keyboardFocus: Bool
     
+    @AppStorage("CurrentUser") private var currentUser: String?
+    
+    @EnvironmentObject private var categoryController: CategoryController
+    
+    @Binding var isReloadList: Bool
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
@@ -36,7 +42,9 @@ struct AddNewCategoryView: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
-                        
+                        DispatchQueue.main.async {
+                            saveNewCategory()
+                        }
                     }
                     .tint(.blue)
                     .disabled(disableAddButton)
@@ -52,10 +60,30 @@ struct AddNewCategoryView: View {
             return category.isEmpty
         }
     }
+    
+    // FUNCTION
+    private func saveNewCategory(){
+        Task {
+            do {
+                let category = Category(categoryName: category)
+                
+                if let userId = currentUser {
+                    try await categoryController.addNewCategory(userId: userId, category: category)
+                }
+                
+                isReloadList.toggle()
+                
+                dismiss()
+                
+            } catch {
+                print("New Category Error :- \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 struct AddNewCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        AddNewCategoryView()
+        AddNewCategoryView(isReloadList: .constant(false))
     }
 }

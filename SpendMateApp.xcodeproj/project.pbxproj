@@ -48,7 +48,10 @@
 		E7BE07022AD4413B00D1F139 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE07012AD4413B00D1F139 /* SignUpView.swift */; };
 		E7C811C72ADF211500BC824D /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C811C62ADF211500BC824D /* UpdateProfile.swift */; };
 		E7CF658C2ADEA4470036FE3D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E7CF658B2ADEA4470036FE3D /* FirebaseStorage */; };
+		E7D301442AEACB510061075E /* EditCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D301432AEACB510061075E /* EditCategoryView.swift */; };
 		E7DDF0762AD80DA9006549C0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDF0752AD80DA9006549C0 /* LoadingView.swift */; };
+		E7E1EBE72AE3F7B5009DC188 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E1EBE62AE3F7B5009DC188 /* CategoryController.swift */; };
+		E7E1EBE92AE3F8AD009DC188 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E1EBE82AE3F8AD009DC188 /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,7 +92,10 @@
 		E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7BE07012AD4413B00D1F139 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		E7C811C62ADF211500BC824D /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
+		E7D301432AEACB510061075E /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
 		E7DDF0752AD80DA9006549C0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		E7E1EBE62AE3F7B5009DC188 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
+		E7E1EBE82AE3F8AD009DC188 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,7 @@
 				E7404B062ACC9639008B49F1 /* Intraduction.swift */,
 				E7AE7FA72AD71700006B8C11 /* Authentication.swift */,
 				E77AB6B22ADB1D8200DC4224 /* Profile.swift */,
+				E7E1EBE82AE3F8AD009DC188 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -187,6 +194,7 @@
 			children = (
 				E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */,
 				E77AB6B42ADB208400DC4224 /* ProfileController.swift */,
+				E7E1EBE62AE3F7B5009DC188 /* CategoryController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -230,6 +238,7 @@
 				E7DDF0752AD80DA9006549C0 /* LoadingView.swift */,
 				E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */,
 				E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */,
+				E7D301432AEACB510061075E /* EditCategoryView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -332,12 +341,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E733978E2ACB4CBC004B14E8 /* WelcomeView.swift in Sources */,
+				E7E1EBE72AE3F7B5009DC188 /* CategoryController.swift in Sources */,
 				E76A10DA2ACDBC380019BE05 /* AddNewExpensesView.swift in Sources */,
 				E7404B072ACC9639008B49F1 /* Intraduction.swift in Sources */,
 				E78CD9C52AD9A2D00017ECF3 /* EmptyProfileCard.swift in Sources */,
 				E78581D92AD9868600573FD8 /* SettingsView.swift in Sources */,
 				E7404B122ACCC58E008B49F1 /* MainView.swift in Sources */,
 				E7DDF0762AD80DA9006549C0 /* LoadingView.swift in Sources */,
+				E7D301442AEACB510061075E /* EditCategoryView.swift in Sources */,
 				E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */,
 				E7404B102ACCB18F008B49F1 /* ExpensesView.swift in Sources */,
 				E77AB6B52ADB208400DC4224 /* ProfileController.swift in Sources */,
@@ -353,6 +364,7 @@
 				E7404B052ACC93F5008B49F1 /* Extension.swift in Sources */,
 				E7AE7FAA2AD71751006B8C11 /* AuthenticationController.swift in Sources */,
 				E77AB6B32ADB1D8200DC4224 /* Profile.swift in Sources */,
+				E7E1EBE92AE3F8AD009DC188 /* Category.swift in Sources */,
 				E70AF1C42AE00A2300DF3619 /* UpdateEmailView.swift in Sources */,
 				E72B64AF2ACDFEB40017BB7C /* AddNewCategoryView.swift in Sources */,
 				E735BBDF2ACF200B00531CB2 /* SignInView.swift in Sources */,
