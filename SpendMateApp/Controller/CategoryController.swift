@@ -57,4 +57,13 @@ class CategoryController: ObservableObject {
         
         try await docRef.updateData(updateField)
     }
+    
+    func deleteCategory(userId: String, category: Category) async throws {
+        let docRef = db.collection("App")
+            .document(userId)
+            .collection("categorys")
+            .document(category.id!)
+        
+        try await docRef.delete()
+    }
 }

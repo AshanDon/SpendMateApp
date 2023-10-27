@@ -16,8 +16,13 @@ struct CategoriesView: View {
     @State private var reloadList: Bool = false
     @State private var showEditCategoryView: Bool = false
     @State private var selectedRowData: Category?
+    @State private var showDeleteConformation: Bool = false
+    @State private var alertTitle: AlertTitle = .success
+    @State private var showAlertView: Bool = false
+    @State private var alertMessage: String = ""
     
     @EnvironmentObject private var categoryController: CategoryController
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
@@ -31,7 +36,9 @@ struct CategoriesView: View {
                         } //: DisclosureGroup
                         .swipeActions(edge: .leading, allowsFullSwipe: false) {
                             Button(role: .destructive) {
-                                
+                                selectedRowData = categoryData
+                                alertTitle = .warning
+                                showDeleteConformation.toggle()
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             } //: Delete Category Button
@@ -43,7 +50,7 @@ struct CategoriesView: View {
                                 Label("Edit", systemImage: "pencil")
                             } //: Edit Category Button
                             .tint(.yellow)
-                        }
+                        } //: Swipe Action
                     }
                 }
             } //: List
@@ -68,6 +75,11 @@ struct CategoriesView: View {
                     } //: VStack
                 }
             }
+            .alert(isPresented: $showDeleteConformation) {
+                Alert(title: Text(alertTitle.rawValue), message: Text("Are you sure you want to delete this category?"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
+                    deleteCategory()
+                })
+            } //: Alert View
         } //: Navigation Stack
         .sheet(isPresented: $showAddCategoryView) {
             AddNewCategoryView(isReloadList: $reloadList)
@@ -92,6 +104,9 @@ struct CategoriesView: View {
         .sheet(isPresented: $showEditCategoryView) {
             EditCategoryView(isUpdate: $reloadList, category: $selectedRowData)
         }
+        .alert(isPresented: $showAlertView) {
+            Alert(title: Text(alertTitle.rawValue), message: Text(alertMessage), dismissButton: .cancel(Text("Ok")))
+        }
     }
     
     
@@ -104,6 +119,29 @@ struct CategoriesView: View {
                 }
             } catch {
                 print("Error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func deleteCategory(){
+        Task {
+            do {
+                if let userId = currentUser, let category = selectedRowData {
+                    try await categoryController.deleteCategory(userId: userId, category: category)
+                    
+                    reloadList.toggle()
+                    
+                    alertTitle = .success
+                    alertMessage = "The category was successfully deleted."
+                    showAlertView.toggle()
+                    
+                }
+            } catch {
+                alertTitle = .error
+                alertMessage = "The category deleting failed. Please try again."
+                showAlertView.toggle()
+                
+                print("Delete Category Error:- \(error.localizedDescription)")
             }
         }
     }
