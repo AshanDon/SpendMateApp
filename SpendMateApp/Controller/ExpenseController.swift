@@ -41,4 +41,22 @@ class ExpenseController: ObservableObject {
               }
         }
     }
+    
+    func searchExpenses(keyword: String, userId: String) throws {
+        db.collection("App")
+          .document(userId)
+          .collection("expenses")
+          .whereField("title", isEqualTo: keyword)
+          .order(by: "date", descending: true)
+          .getDocuments { [self] snapshot, error in
+              guard let documents = snapshot?.documents else {
+                print("No documents")
+                return
+              }
+              
+              self.expenses = documents.compactMap { queryDocumentSnapshot -> Expense? in
+                    return try? queryDocumentSnapshot.data(as: Expense.self)
+              }
+        }
+    }
 }

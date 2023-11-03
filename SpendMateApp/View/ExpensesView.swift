@@ -24,9 +24,16 @@ struct ExpensesView: View {
         NavigationStack {
             List {
                 if !expenseController.expenses.isEmpty {
-                    ForEach(expenseController.expenses, id: \.self) { expenses in
-                        Section("\(expenses.cardTitle)") {
-                            ExpensesCardView(expenses: expenses)
+                    let filteredArray = expenseController.expenses.filter({ self.searchExpenses.isEmpty ? true : $0.title.localizedCaseInsensitiveContains(self.searchExpenses)})
+                    
+                    if filteredArray.isEmpty {
+                        NoResultCell()
+                    } else {
+                        ForEach(filteredArray, id: \.self) { expenses in
+                            
+                            Section("\(expenses.cardTitle)") {
+                                ExpensesCardView(expenses: expenses)
+                            }
                         }
                     }
                 }
@@ -54,7 +61,7 @@ struct ExpensesView: View {
                 }
             })
         } //: Navigation Stack
-        .searchable(text: $searchExpenses)
+        .searchable(text: $searchExpenses, placement: .navigationBarDrawer, prompt: Text("Search expenses..."))
         .sheet(isPresented: $showAddExpenseView) {
             AddNewExpensesView(isSaveExpense: $reloadExpensesList)
         }
