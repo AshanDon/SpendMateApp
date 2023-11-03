@@ -22,6 +22,7 @@ struct CategoriesView: View {
     @State private var alertMessage: String = ""
     
     @EnvironmentObject private var categoryController: CategoryController
+    @EnvironmentObject private var expenseController: ExpenseController
     
     // MARK: - BODY
     var body: some View {
@@ -30,7 +31,12 @@ struct CategoriesView: View {
                 if !categoryController.categorys.isEmpty {
                     ForEach(categoryController.categorys, id: \.self) { categoryData in
                         DisclosureGroup {
-                
+                            ForEach(expenseController.expenses, id: \.self) { expenseData in
+                                
+                                if categoryData.categoryName == expenseData.category {
+                                    ExpenseDetailCard(expens: expenseData)
+                                }
+                            }
                         } label: {
                             Text(categoryData.categoryName)
                         } //: DisclosureGroup
@@ -142,6 +148,18 @@ struct CategoriesView: View {
                 showAlertView.toggle()
                 
                 print("Delete Category Error:- \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func loadExpenses(){
+        Task {
+            do {
+                if let userId = currentUser {
+                   try expenseController.fetchExpenses(userId: userId)
+                }
+            } catch {
+                print("fetching error:- \(error.localizedDescription)")
             }
         }
     }

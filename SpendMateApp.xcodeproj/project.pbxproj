@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E70565492AEC16F7001F5801 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70565482AEC16F7001F5801 /* Expense.swift */; };
+		E705654B2AEC18B6001F5801 /* ExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E705654A2AEC18B6001F5801 /* ExpenseController.swift */; };
+		E705654D2AEC3C48001F5801 /* ExpensesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E705654C2AEC3C48001F5801 /* ExpensesCardView.swift */; };
 		E70AF1C42AE00A2300DF3619 /* UpdateEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF1C32AE00A2300DF3619 /* UpdateEmailView.swift */; };
 		E72B64AF2ACDFEB40017BB7C /* AddNewCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B64AE2ACDFEB40017BB7C /* AddNewCategoryView.swift */; };
 		E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E733978B2ACB4CBC004B14E8 /* SpendMateAppApp.swift */; };
@@ -39,6 +42,7 @@
 		E78CD9C32AD9937C0017ECF3 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */; };
 		E78CD9C52AD9A2D00017ECF3 /* EmptyProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */; };
 		E78CD9C72AD9A5FC0017ECF3 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */; };
+		E793BDA82AF55BFA00126426 /* ExpenseDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E793BDA72AF55BFA00126426 /* ExpenseDetailCard.swift */; };
 		E7AE7FA82AD71700006B8C11 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE7FA72AD71700006B8C11 /* Authentication.swift */; };
 		E7AE7FAA2AD71751006B8C11 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */; };
 		E7AE7FAC2AD72134006B8C11 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */; };
@@ -55,6 +59,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E70565482AEC16F7001F5801 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
+		E705654A2AEC18B6001F5801 /* ExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseController.swift; sourceTree = "<group>"; };
+		E705654C2AEC3C48001F5801 /* ExpensesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesCardView.swift; sourceTree = "<group>"; };
 		E70AF1C32AE00A2300DF3619 /* UpdateEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateEmailView.swift; sourceTree = "<group>"; };
 		E72B64AE2ACDFEB40017BB7C /* AddNewCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCategoryView.swift; sourceTree = "<group>"; };
 		E73397882ACB4CBC004B14E8 /* SpendMateApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpendMateApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +94,7 @@
 		E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProfileCard.swift; sourceTree = "<group>"; };
 		E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
+		E793BDA72AF55BFA00126426 /* ExpenseDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailCard.swift; sourceTree = "<group>"; };
 		E7AE7FA72AD71700006B8C11 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -165,7 +173,6 @@
 				E7404B0F2ACCB18F008B49F1 /* ExpensesView.swift */,
 				E7404B132ACCC7E4008B49F1 /* CategoriesView.swift */,
 				E7404B112ACCC58E008B49F1 /* MainView.swift */,
-				E76A10D92ACDBC380019BE05 /* AddNewExpensesView.swift */,
 				E735BBDE2ACF200B00531CB2 /* SignInView.swift */,
 				E7BE07012AD4413B00D1F139 /* SignUpView.swift */,
 				E7404B082ACC9B0A008B49F1 /* SubView */,
@@ -185,6 +192,7 @@
 				E7AE7FA72AD71700006B8C11 /* Authentication.swift */,
 				E77AB6B22ADB1D8200DC4224 /* Profile.swift */,
 				E7E1EBE82AE3F8AD009DC188 /* Category.swift */,
+				E70565482AEC16F7001F5801 /* Expense.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 				E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */,
 				E77AB6B42ADB208400DC4224 /* ProfileController.swift */,
 				E7E1EBE62AE3F7B5009DC188 /* CategoryController.swift */,
+				E705654A2AEC18B6001F5801 /* ExpenseController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -232,6 +241,7 @@
 		E7404B082ACC9B0A008B49F1 /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				E76A10D92ACDBC380019BE05 /* AddNewExpensesView.swift */,
 				E7404B092ACC9B38008B49F1 /* OnboardView.swift */,
 				E76A10D72ACD98D40019BE05 /* AlertView.swift */,
 				E72B64AE2ACDFEB40017BB7C /* AddNewCategoryView.swift */,
@@ -239,6 +249,8 @@
 				E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */,
 				E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */,
 				E7D301432AEACB510061075E /* EditCategoryView.swift */,
+				E705654C2AEC3C48001F5801 /* ExpensesCardView.swift */,
+				E793BDA72AF55BFA00126426 /* ExpenseDetailCard.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -340,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E705654B2AEC18B6001F5801 /* ExpenseController.swift in Sources */,
 				E733978E2ACB4CBC004B14E8 /* WelcomeView.swift in Sources */,
 				E7E1EBE72AE3F7B5009DC188 /* CategoryController.swift in Sources */,
 				E76A10DA2ACDBC380019BE05 /* AddNewExpensesView.swift in Sources */,
@@ -350,16 +363,19 @@
 				E7DDF0762AD80DA9006549C0 /* LoadingView.swift in Sources */,
 				E7D301442AEACB510061075E /* EditCategoryView.swift in Sources */,
 				E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */,
+				E705654D2AEC3C48001F5801 /* ExpensesCardView.swift in Sources */,
 				E7404B102ACCB18F008B49F1 /* ExpensesView.swift in Sources */,
 				E77AB6B52ADB208400DC4224 /* ProfileController.swift in Sources */,
 				E7C811C72ADF211500BC824D /* UpdateProfile.swift in Sources */,
 				E76A10D82ACD98D40019BE05 /* AlertView.swift in Sources */,
 				E7404B142ACCC7E4008B49F1 /* CategoriesView.swift in Sources */,
+				E70565492AEC16F7001F5801 /* Expense.swift in Sources */,
 				E7AE7FA82AD71700006B8C11 /* Authentication.swift in Sources */,
 				E7404B032ACC93C8008B49F1 /* Constant.swift in Sources */,
 				E7404B0A2ACC9B38008B49F1 /* OnboardView.swift in Sources */,
 				E77AB6AC2ADACEE600DC4224 /* NewProfile.swift in Sources */,
 				E7BE07022AD4413B00D1F139 /* SignUpView.swift in Sources */,
+				E793BDA82AF55BFA00126426 /* ExpenseDetailCard.swift in Sources */,
 				E78CD9C72AD9A5FC0017ECF3 /* ProfileCard.swift in Sources */,
 				E7404B052ACC93F5008B49F1 /* Extension.swift in Sources */,
 				E7AE7FAA2AD71751006B8C11 /* AuthenticationController.swift in Sources */,

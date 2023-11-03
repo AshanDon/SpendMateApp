@@ -15,4 +15,6 @@ struct Category: Codable, Hashable{
     var categoryName: String
     var createdDate: Date?
     
+    var expenses: [Expense]?
+    
 }
