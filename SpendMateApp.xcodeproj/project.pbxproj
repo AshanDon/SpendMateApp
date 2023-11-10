@@ -44,6 +44,7 @@
 		E78CD9C72AD9A5FC0017ECF3 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */; };
 		E793BDA82AF55BFA00126426 /* ExpenseDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E793BDA72AF55BFA00126426 /* ExpenseDetailCard.swift */; };
 		E793BDAA2AF5855400126426 /* NoResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E793BDA92AF5855400126426 /* NoResultCell.swift */; };
+		E79D9BAC2AF7AABC000593BC /* EditExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79D9BAB2AF7AABC000593BC /* EditExpenseView.swift */; };
 		E7AE7FA82AD71700006B8C11 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE7FA72AD71700006B8C11 /* Authentication.swift */; };
 		E7AE7FAA2AD71751006B8C11 /* AuthenticationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */; };
 		E7AE7FAC2AD72134006B8C11 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */; };
@@ -97,6 +98,7 @@
 		E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
 		E793BDA72AF55BFA00126426 /* ExpenseDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailCard.swift; sourceTree = "<group>"; };
 		E793BDA92AF5855400126426 /* NoResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultCell.swift; sourceTree = "<group>"; };
+		E79D9BAB2AF7AABC000593BC /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; };
 		E7AE7FA72AD71700006B8C11 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				E705654C2AEC3C48001F5801 /* ExpensesCardView.swift */,
 				E793BDA72AF55BFA00126426 /* ExpenseDetailCard.swift */,
 				E793BDA92AF5855400126426 /* NoResultCell.swift */,
+				E79D9BAB2AF7AABC000593BC /* EditExpenseView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				E7404B032ACC93C8008B49F1 /* Constant.swift in Sources */,
 				E7404B0A2ACC9B38008B49F1 /* OnboardView.swift in Sources */,
 				E77AB6AC2ADACEE600DC4224 /* NewProfile.swift in Sources */,
+				E79D9BAC2AF7AABC000593BC /* EditExpenseView.swift in Sources */,
 				E7BE07022AD4413B00D1F139 /* SignUpView.swift in Sources */,
 				E793BDA82AF55BFA00126426 /* ExpenseDetailCard.swift in Sources */,
 				E78CD9C72AD9A5FC0017ECF3 /* ProfileCard.swift in Sources */,

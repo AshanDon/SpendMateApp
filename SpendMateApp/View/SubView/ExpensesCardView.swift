@@ -44,6 +44,8 @@ struct ExpensesCardView: View {
                     .padding(.vertical, 8)
             } //: VStack
             .padding(.leading, 5)
+            .lineLimit(1)
+            .minimumScaleFactor(0.8)
             
             Spacer()
             

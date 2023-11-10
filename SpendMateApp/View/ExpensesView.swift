@@ -14,6 +14,8 @@ struct ExpensesView: View {
     @State private var searchExpenses: String = ""
     @State private var showAddExpenseView: Bool = false
     @State private var reloadExpensesList: Bool = false
+    @State private var showEditExpenseView: Bool = false
+    @State private var swipeSectionData: Expense?
     
     @EnvironmentObject private var expenseController: ExpenseController
     
@@ -22,24 +24,36 @@ struct ExpensesView: View {
     // MARK: - BODY
     var body: some View {
         NavigationStack {
-            List {
-                if !expenseController.expenses.isEmpty {
-                    let filteredArray = expenseController.expenses.filter({ self.searchExpenses.isEmpty ? true : $0.title.localizedCaseInsensitiveContains(self.searchExpenses)})
-                    
-                    if filteredArray.isEmpty {
-                        NoResultCell()
-                    } else {
-                        ForEach(filteredArray, id: \.self) { expenses in
-                            
-                            Section("\(expenses.cardTitle)") {
-                                ExpensesCardView(expenses: expenses)
-                            }
-                        }
-                    }
+            let filteredArray = expenseController.expenses.filter({ self.searchExpenses.isEmpty ? true : $0.title.localizedCaseInsensitiveContains(self.searchExpenses)})
+            
+            List(filteredArray, id: \.self) { expense in
+                if filteredArray.isEmpty {
+                     NoResultCell()
+                } else {
+                    Section("\(expense.cardTitle)") {
+                        ExpensesCardView(expenses: expense)
+                    } //: Section
+                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                                    
+                        Button(role: .destructive) {
+                            swipeSectionData = expense
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        } //: Delete Category Button
+                        
+                        Button(role: .none) {
+                            swipeSectionData = expense
+                            showEditExpenseView.toggle()
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
+                        } //: Edit Category Button
+                        .tint(.yellow)
+                        
+                    } //: Swipe Action
                 }
-            } //: List
+            }
             .navigationTitle("Expenses")
-            .listStyle(.insetGrouped)
+            .listStyle(InsetGroupedListStyle())
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -61,7 +75,7 @@ struct ExpensesView: View {
                 }
             })
         } //: Navigation Stack
-        .searchable(text: $searchExpenses, placement: .navigationBarDrawer, prompt: Text("Search expenses..."))
+        .searchable(text: $searchExpenses, placement: .navigationBarDrawer, prompt: Text("Search expenses"))
         .sheet(isPresented: $showAddExpenseView) {
             AddNewExpensesView(isSaveExpense: $reloadExpensesList)
         }
@@ -77,6 +91,9 @@ struct ExpensesView: View {
             
             reloadExpensesList = false
         }
+        .sheet(isPresented: $showEditExpenseView) {
+            EditExpenseView(expense: $swipeSectionData, isUpdated: $reloadExpensesList)
+        } //: Sheet
     }
     
     // MARK: - FUNCTION

@@ -59,4 +59,21 @@ class ExpenseController: ObservableObject {
               }
         }
     }
+    
+    func updateExpense(userId: String, expense: Expense) async throws {
+        let docRef = db.collection("App")
+            .document(userId)
+            .collection("expenses")
+            .document(expense.id!)
+        
+        let updateField: [String : Any] = [
+            "title": expense.title,
+            "description": expense.description,
+            "amount": expense.amount,
+            "date": expense.date
+            
+        ]
+        
+        try await docRef.updateData(updateField)
+    }
 }
