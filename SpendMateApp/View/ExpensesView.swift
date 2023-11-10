@@ -136,6 +136,8 @@ struct ExpensesView: View {
                     alertMessage = "The expense is successfully deleted."
                     showAlertView.toggle()
                     reloadExpensesList.toggle()
+                    // Haptic Feedback
+                    feedback.impactOccurred()
                 }
             } catch {
                 alertTitle = .error

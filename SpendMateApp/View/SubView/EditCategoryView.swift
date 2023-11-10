@@ -79,6 +79,9 @@ struct EditCategoryView: View {
                     try await cateController.updateCategory(userId: userId, category: editCategory)
                     
                     isUpdate.toggle()
+                    // Haptic Feedback
+                    feedback.impactOccurred()
+                    
                     dismiss()
                 }
             } catch {

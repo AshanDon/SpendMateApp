@@ -140,7 +140,8 @@ struct CategoriesView: View {
                     alertTitle = .success
                     alertMessage = "The category was successfully deleted."
                     showAlertView.toggle()
-                    
+                    // Haptic Feedback
+                    feedback.impactOccurred()
                 }
             } catch {
                 alertTitle = .error

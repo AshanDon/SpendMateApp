@@ -77,7 +77,7 @@ struct AddNewExpensesView: View {
                                     ToolbarItemGroup(placement: .keyboard) {
                                         Spacer()
                                         
-                                        Button("Cancel") {
+                                        Button("Done") {
                                             keyboardFocus = nil
                                         } //: Cancel Button
                                         .tint(.black)
@@ -88,7 +88,7 @@ struct AddNewExpensesView: View {
                 }
                 
                 Section("Date") {
-                    DatePicker("", selection: $date, displayedComponents: [.date])
+                    DatePicker("", selection: $date, in: ...Date(), displayedComponents: [.date])
                         .datePickerStyle(.graphical)
                         .labelsHidden()
                 }
@@ -162,7 +162,8 @@ struct AddNewExpensesView: View {
                     alertTitle = .success
                     alertMessage = "Your expense were successfully saved."
                     showAlertView.toggle()
-                    
+                    // Haptic Feedback
+                    feedback.impactOccurred()
                 }
             } catch {
                 print("Save Error:- \(error.localizedDescription)")

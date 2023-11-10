@@ -72,6 +72,8 @@ struct AddNewCategoryView: View {
                 }
                 
                 isReloadList.toggle()
+                // Haptic Feedback
+                feedback.impactOccurred()
                 
                 dismiss()
                 

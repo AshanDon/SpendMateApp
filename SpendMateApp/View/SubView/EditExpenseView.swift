@@ -160,6 +160,8 @@ struct EditExpenseView: View {
                     alertTitle = .success
                     alertMessage = "Your expense were successfully updated."
                     showAlertView.toggle()
+                    // Haptic Feedback
+                    feedback.impactOccurred()
                 }
             } catch {
                 alertTitle = .error

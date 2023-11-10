@@ -11,6 +11,7 @@ import SwiftUI
 
 // MARK: - Data
 let intraductions: [Intraduction] = Bundle.main.decode("Intraduction.json")
+let feedback: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
 
 
 
