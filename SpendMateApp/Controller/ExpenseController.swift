@@ -76,4 +76,13 @@ class ExpenseController: ObservableObject {
         
         try await docRef.updateData(updateField)
     }
+    
+    func deleteExpense(userId: String, expense: Expense) async throws {
+        let docRef = db.collection("App")
+            .document(userId)
+            .collection("expenses")
+            .document(expense.id!)
+        
+        try await docRef.delete()
+    }
 }

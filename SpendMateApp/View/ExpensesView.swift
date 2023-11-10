@@ -16,6 +16,9 @@ struct ExpensesView: View {
     @State private var reloadExpensesList: Bool = false
     @State private var showEditExpenseView: Bool = false
     @State private var swipeSectionData: Expense?
+    @State private var showAlertView: Bool = false
+    @State private var alertTitle: AlertTitle = .success
+    @State private var alertMessage: String = ""
     
     @EnvironmentObject private var expenseController: ExpenseController
     
@@ -26,10 +29,10 @@ struct ExpensesView: View {
         NavigationStack {
             let filteredArray = expenseController.expenses.filter({ self.searchExpenses.isEmpty ? true : $0.title.localizedCaseInsensitiveContains(self.searchExpenses)})
             
-            List(filteredArray, id: \.self) { expense in
-                if filteredArray.isEmpty {
-                     NoResultCell()
-                } else {
+            if filteredArray.isEmpty && !searchExpenses.isEmpty{
+                NoResultCell()
+            } else {
+                List(filteredArray, id: \.self) { expense in
                     Section("\(expense.cardTitle)") {
                         ExpensesCardView(expenses: expense)
                     } //: Section
@@ -37,6 +40,9 @@ struct ExpensesView: View {
                                                     
                         Button(role: .destructive) {
                             swipeSectionData = expense
+                            alertTitle = .attention
+                            alertMessage = "Are you sure you want to delete expenses?"
+                            showAlertView.toggle()
                         } label: {
                             Label("Delete", systemImage: "trash")
                         } //: Delete Category Button
@@ -50,30 +56,30 @@ struct ExpensesView: View {
                         .tint(.yellow)
                         
                     } //: Swipe Action
-                }
-            }
-            .navigationTitle("Expenses")
-            .listStyle(InsetGroupedListStyle())
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showAddExpenseView.toggle()
-                    }) {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title2)
+                } //: List
+                .navigationTitle("Expenses")
+                .listStyle(InsetGroupedListStyle())
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            showAddExpenseView.toggle()
+                        }) {
+                            Image(systemName: "plus.circle.fill")
+                                .font(.title2)
 
-                    } //: Add Expense Button
-                } //: ToolbarItem
-            } //: Toolbar
-            .overlay(content: {
-                if expenseController.expenses.isEmpty {
-                    VStack(alignment: .center) {
-                        Spacer()
-                        AlertView(labelName: "No Expenses")
-                        Spacer()
-                    } //: No expenses view
-                }
-            })
+                        } //: Add Expense Button
+                    } //: ToolbarItem
+                } //: Toolbar
+                .overlay(content: {
+                    if expenseController.expenses.isEmpty {
+                        VStack(alignment: .center) {
+                            Spacer()
+                            AlertView(labelName: "No Expenses")
+                            Spacer()
+                        } //: No expenses view
+                    }
+                })
+            }
         } //: Navigation Stack
         .searchable(text: $searchExpenses, placement: .navigationBarDrawer, prompt: Text("Search expenses"))
         .sheet(isPresented: $showAddExpenseView) {
@@ -94,6 +100,19 @@ struct ExpensesView: View {
         .sheet(isPresented: $showEditExpenseView) {
             EditExpenseView(expense: $swipeSectionData, isUpdated: $reloadExpensesList)
         } //: Sheet
+        .alert(isPresented: $showAlertView) {
+            var alertView: Alert
+            if alertTitle == .attention {
+                alertView = Alert(title: Text(alertTitle.rawValue), message: Text(alertMessage), primaryButton: .destructive(Text("Yes")) {
+                    DispatchQueue.main.async {
+                        deleteExpense()
+                    }
+                }, secondaryButton: .cancel())
+            } else {
+                alertView = Alert(title: Text(alertTitle.rawValue), message: Text(alertMessage), dismissButton: .default(Text(alertTitle == .success ? "Ok" : "Cancel")))
+            }
+            return alertView
+        } //: Alert
     }
     
     // MARK: - FUNCTION
@@ -104,6 +123,25 @@ struct ExpensesView: View {
             }
         } catch {
             print("Fetching expenses error:- \(error.localizedDescription)")
+        }
+    }
+    
+    private func deleteExpense(){
+        Task {
+            do {
+                if let userId = currentUser, let deleteExpense = swipeSectionData {
+                    try await expenseController.deleteExpense(userId: userId, expense: deleteExpense)
+                    
+                    alertTitle = .success
+                    alertMessage = "The expense is successfully deleted."
+                    showAlertView.toggle()
+                    reloadExpensesList.toggle()
+                }
+            } catch {
+                alertTitle = .error
+                alertMessage = "Sorry, The expense was unsuccessfully deleted. Please try again."
+                showAlertView.toggle()
+            }
         }
     }
 }
