@@ -39,24 +39,24 @@ struct CategoriesView: View {
                             }
                         } label: {
                             Text(categoryData.categoryName)
+                                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                    Button(role: .destructive) {
+                                        selectedRowData = categoryData
+                                        alertTitle = .warning
+                                        showDeleteConformation.toggle()
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    } //: Delete Category Button
+                                    
+                                    Button(role: .none) {
+                                        selectedRowData = categoryData
+                                        showEditCategoryView.toggle()
+                                    } label: {
+                                        Label("Edit", systemImage: "pencil")
+                                    } //: Edit Category Button
+                                    .tint(.yellow)
+                                } //: Swipe Action
                         } //: DisclosureGroup
-                        .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                            Button(role: .destructive) {
-                                selectedRowData = categoryData
-                                alertTitle = .warning
-                                showDeleteConformation.toggle()
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            } //: Delete Category Button
-                            
-                            Button(role: .none) {
-                                selectedRowData = categoryData
-                                showEditCategoryView.toggle()
-                            } label: {
-                                Label("Edit", systemImage: "pencil")
-                            } //: Edit Category Button
-                            .tint(.yellow)
-                        } //: Swipe Action
                     }
                 }
             } //: List
@@ -134,6 +134,8 @@ struct CategoriesView: View {
             do {
                 if let userId = currentUser, let category = selectedRowData {
                     try await categoryController.deleteCategory(userId: userId, category: category)
+                    
+                    try await expenseController.deleteExpenseByCategory(userId: userId, categoryName: category.categoryName)
                     
                     reloadList.toggle()
                     

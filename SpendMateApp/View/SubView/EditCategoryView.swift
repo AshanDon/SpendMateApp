@@ -13,11 +13,13 @@ struct EditCategoryView: View {
     // MARK: - PROPERTIES
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var cateController: CategoryController
+    @EnvironmentObject private var expenseController: ExpenseController
     
     @Binding var isUpdate: Bool
     @Binding var category: Category?
     
     @State private var editCategoryName: String = ""
+    @State private var oldCategoryName: String = ""
     
     @FocusState private var textFocus: Bool
     
@@ -65,6 +67,11 @@ struct EditCategoryView: View {
                     .disabled(enableEditButton)
                 }
             } //: Tool Bar
+            .onAppear {
+                if let category = category {
+                    oldCategoryName = category.categoryName
+                }
+            }
         } //: Navigation Stack
         .presentationDetents([.height(180)])
         .presentationCornerRadius(20)
@@ -77,6 +84,8 @@ struct EditCategoryView: View {
             do {
                 if let userId = currentUser, let editCategory = category {
                     try await cateController.updateCategory(userId: userId, category: editCategory)
+                    
+                    try await expenseController.updateExpenseCategoryName(userId: userId, oldCategoryName: oldCategoryName, newCategoryName: editCategoryName)
                     
                     isUpdate.toggle()
                     // Haptic Feedback

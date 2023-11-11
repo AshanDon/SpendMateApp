@@ -85,4 +85,42 @@ class ExpenseController: ObservableObject {
         
         try await docRef.delete()
     }
+    
+    private func getAllExpenseByCategoryWise(userId: String, categoryName: String) async throws -> QuerySnapshot {
+        let documents = try await db.collection("App")
+            .document(userId)
+            .collection("expenses")
+            .whereField("category", isEqualTo: categoryName)
+            .getDocuments()
+        return documents
+    }
+    
+    func deleteExpenseByCategory(userId: String, categoryName: String) async throws{
+        
+        let documents = try await getAllExpenseByCategoryWise(userId: userId, categoryName: categoryName)
+        
+        for document in documents.documents {
+            try await deleteExpense(userId: userId, expense: document.data(as: Expense.self))
+        }
+    }
+    
+    func updateExpenseCategoryName(userId: String, oldCategoryName: String, newCategoryName: String) async throws {
+        let documents = try await getAllExpenseByCategoryWise(userId: userId, categoryName: oldCategoryName)
+        
+        for document in documents.documents {
+            
+            let expense = try document.data(as: Expense.self)
+            
+            let docRef = db.collection("App")
+                .document(userId)
+                .collection("expenses")
+                .document(expense.id!)
+            
+            let updateField: [String : Any] = [
+                "category": newCategoryName
+            ]
+            
+            try await docRef.updateData(updateField)
+        }
+    }
 }
