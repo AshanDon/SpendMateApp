@@ -28,6 +28,7 @@ struct SettingsView: View {
     @State private var alertTitle: AlertTitle = .success
     @State private var showDeleteAlert: Bool = false
     @State private var showEditPasswordView: Bool = false
+    @State private var showAboutApp: Bool = false
     
     @EnvironmentObject private var authController: AuthenticationController
     @EnvironmentObject private var profileController: ProfileController
@@ -152,9 +153,11 @@ struct SettingsView: View {
                 } //: Account Section
                 
                 Section {
-                    Button(action: {}) {
+                    Button(action: {
+                        showAboutApp.toggle()
+                    }) {
                         HStack {
-                            Text(verbatim: "About")
+                            Text(verbatim: "About app")
                                 .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
                                 .foregroundColor(Color("#666666"))
                                 .lineSpacing(10)
@@ -192,6 +195,9 @@ struct SettingsView: View {
             }
             .navigationDestination(isPresented: $showEditPasswordView) {
                 UpdatePasswordView(showSignOutAlert: $showSignOutAlert)
+            }
+            .navigationDestination(isPresented: $showAboutApp) {
+                AboutAppView()
             }
         } //: NavigationStack
         .alert(isPresented: $showSignOutAlert) {
