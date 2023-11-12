@@ -266,6 +266,7 @@ struct UpdateEmailView: View {
                 LoadingView()
             }
         }
+        .toolbar(.hidden, for: .tabBar)
     }
     
     

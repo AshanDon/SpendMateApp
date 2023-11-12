@@ -233,6 +233,7 @@ struct UpdateProfile: View {
                 }
             })
         }
+        .toolbar(.hidden, for: .tabBar)
     }
     
     
