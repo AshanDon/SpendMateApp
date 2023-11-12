@@ -27,6 +27,7 @@ struct SettingsView: View {
     @State private var alertMessage: String = ""
     @State private var alertTitle: AlertTitle = .success
     @State private var showDeleteAlert: Bool = false
+    @State private var showEditPasswordView: Bool = false
     
     @EnvironmentObject private var authController: AuthenticationController
     @EnvironmentObject private var profileController: ProfileController
@@ -109,7 +110,9 @@ struct SettingsView: View {
                         )
                     }
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        showEditPasswordView.toggle()
+                    }) {
                         HStack {
                             Text(verbatim: "Update Password")
                                 .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
@@ -187,11 +190,14 @@ struct SettingsView: View {
             .navigationDestination(isPresented: $showUpdateEmailView) {
                 UpdateEmailView()
             }
+            .navigationDestination(isPresented: $showEditPasswordView) {
+                UpdatePasswordView(showSignOutAlert: $showSignOutAlert)
+            }
         } //: NavigationStack
         .alert(isPresented: $showSignOutAlert) {
             Alert(
                 title: Text("Attention!"),
-                message: Text("Are you sure you want to sign-up?"),
+                message: Text("Are you sure you want to sign out?"),
                 primaryButton: .destructive(Text("Yes")) {
                     showLoadingView.toggle()
                     

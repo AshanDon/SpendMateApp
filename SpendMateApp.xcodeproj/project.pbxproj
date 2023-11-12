@@ -37,6 +37,7 @@
 		E77AB6B12ADB19DC00DC4224 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E77AB6B02ADB19DC00DC4224 /* FirebaseFirestoreSwift */; };
 		E77AB6B32ADB1D8200DC4224 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AB6B22ADB1D8200DC4224 /* Profile.swift */; };
 		E77AB6B52ADB208400DC4224 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77AB6B42ADB208400DC4224 /* ProfileController.swift */; };
+		E77BA9892AFFF54E00A2ED18 /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77BA9882AFFF54E00A2ED18 /* UpdatePasswordView.swift */; };
 		E78581D92AD9868600573FD8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78581D82AD9868600573FD8 /* SettingsView.swift */; };
 		E78CD9C12AD991040017ECF3 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E78CD9C02AD991040017ECF3 /* Roboto-Regular.ttf */; };
 		E78CD9C32AD9937C0017ECF3 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */; };
@@ -91,6 +92,7 @@
 		E77AB6AB2ADACEE600DC4224 /* NewProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProfile.swift; sourceTree = "<group>"; };
 		E77AB6B22ADB1D8200DC4224 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		E77AB6B42ADB208400DC4224 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		E77BA9882AFFF54E00A2ED18 /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
 		E78581D82AD9868600573FD8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E78CD9C02AD991040017ECF3 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				E77AB6AB2ADACEE600DC4224 /* NewProfile.swift */,
 				E7C811C62ADF211500BC824D /* UpdateProfile.swift */,
 				E70AF1C32AE00A2300DF3619 /* UpdateEmailView.swift */,
+				E77BA9882AFFF54E00A2ED18 /* UpdatePasswordView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			files = (
 				E705654B2AEC18B6001F5801 /* ExpenseController.swift in Sources */,
 				E733978E2ACB4CBC004B14E8 /* WelcomeView.swift in Sources */,
+				E77BA9892AFFF54E00A2ED18 /* UpdatePasswordView.swift in Sources */,
 				E7E1EBE72AE3F7B5009DC188 /* CategoryController.swift in Sources */,
 				E76A10DA2ACDBC380019BE05 /* AddNewExpensesView.swift in Sources */,
 				E7404B072ACC9639008B49F1 /* Intraduction.swift in Sources */,

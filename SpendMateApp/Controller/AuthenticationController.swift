@@ -83,4 +83,12 @@ class AuthenticationController: ObservableObject {
         
         try await currentUser.delete()
     }
+    
+    func updateUserPassword(newPassword: String) throws{
+        guard let currentUser = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        
+        currentUser.updatePassword(to: newPassword)
+    }
 }
