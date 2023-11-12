@@ -10,7 +10,7 @@ import SwiftUI
 struct LoadingView: View {
     var body: some View {
         ZStack(alignment: .center) {
-            Color.black
+            Color.gray
                 .opacity(0.7)
                 .ignoresSafeArea()
             
