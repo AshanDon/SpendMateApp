@@ -15,58 +15,66 @@ struct SignUpView: View {
     
     @State private var keyboardHeight: CGFloat = 0
     @State private var isLoading: Bool = false
+    @State private var showVerifyEmailView: Bool = false
+    @State private var email: String = ""
     
     // MARK: - BODY
     var body: some View {
-        ZStack {
-            Color.accentColor
-                .ignoresSafeArea()
-            
-            VStack(alignment: .center, spacing: 0) {
+        NavigationStack {
+            ZStack {
+                Color.accentColor
+                    .ignoresSafeArea()
                 
-                Image("backgroundImage")
-                    .resizable()
-                    .scaledToFit()
-                
-                Spacer()
-                
-                
-            } //: VStack
-            .overlay(
-                VStack(alignment: .center, content: {
-                    HStack(alignment: .center) {
-                        Button(action: {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        }) {
-                            Image(systemName: "chevron.left")
-                                .imageScale(.large)
-                                .foregroundColor(.black)
-                                .frame(width: 25, height: 25)
-                        } //: Back Button
+                VStack(alignment: .center, spacing: 0) {
+                    
+                    Image("backgroundImage")
+                        .resizable()
+                        .scaledToFit()
+                    
+                    Spacer()
+                    
+                    
+                } //: VStack
+                .overlay(
+                    VStack(alignment: .center, content: {
+                        HStack(alignment: .center) {
+                            Button(action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }) {
+                                Image(systemName: "chevron.left")
+                                    .imageScale(.large)
+                                    .foregroundColor(.black)
+                                    .frame(width: 25, height: 25)
+                            } //: Back Button
+                            
+                            Spacer()
+                        } //: HStack
+                        .padding(.top, UIApplication.shared.getSafeAreaTop() - 10)
+                        .padding(.leading, 20)
                         
-                        Spacer()
-                    } //: HStack
-                    .padding(.top, UIApplication.shared.getSafeAreaTop() - 10)
-                    .padding(.leading, 20)
+                        Spacer(minLength: keyboardHeight > 0 ? 250 : .nan)
                     
-                    Spacer(minLength: keyboardHeight > 0 ? 250 : .nan)
+                        
+                        SignUpContent(presentation: presentationMode, keyboardHeight: $keyboardHeight, showLoading: $isLoading, isSignUp: $showVerifyEmailView,
+                                      emailAddress: $email)
+                        
+                    }) //: VStack
+                )
                 
-                    
-                    SignUpContent(presentation: presentationMode, keyboardHeight: $keyboardHeight, showLoading: $isLoading)
-                    
-                }) //: VStack
-            )
-            
-        } //: ZStack
-        .overlay {
-            if isLoading {
-                LoadingView()
+            } //: ZStack
+            .overlay {
+                if isLoading {
+                    LoadingView()
+                }
+            }
+            .edgesIgnoringSafeArea(.bottom)
+            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
+            .navigationDestination(isPresented: $showVerifyEmailView) {
+                VerifyEmailView(presentation: presentationMode, email: $email)
             }
         }
-        .edgesIgnoringSafeArea(.bottom)
-        .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
     }
 }
 
@@ -83,6 +91,7 @@ struct SignUpContent: View {
     @State private var disableButton = true
     @State private var passwordFieldForegroundColor: Color = .black
     @State private var emailFieldForegroundColor: Color = .black
+    @State private var alertTitle: AlertTitle = .success
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     
@@ -92,10 +101,13 @@ struct SignUpContent: View {
     @Binding var presentation: PresentationMode
     @Binding var keyboardHeight: CGFloat
     @Binding var showLoading: Bool
+    @Binding var isSignUp: Bool
+    @Binding var emailAddress: String
     
     @EnvironmentObject private var authController: AuthenticationController
     
     @AppStorage("ProfileComplete") private var isProfileComplete: Bool?
+    
     
     // Check that text fields are empty.
     private var isEmptyFields : Bool {
@@ -281,7 +293,7 @@ struct SignUpContent: View {
                 .clipShape(CustomShape())
         )
         .alert(isPresented: $showAlert) {
-            Alert(title: Text("Warning"), message: Text(alertMessage), dismissButton: .cancel())
+            Alert(title: Text(alertTitle.rawValue), message: Text(alertMessage), dismissButton: .cancel())
         }
     }
     
@@ -299,13 +311,13 @@ struct SignUpContent: View {
                 let result = try await authController.createUser()
                 
                 if !result.uid.isEmpty {
-                    
                     isProfileComplete = false
-                    presentation.dismiss()
-                    
                     showLoading = false
-                    
+                    emailAddress = authController.user.email
+                    isSignUp.toggle()
+                
                 } else {
+                    alertTitle = .error
                     alertMessage = "User Not Created."
                     
                     showAlert.toggle()

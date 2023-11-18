@@ -21,25 +21,16 @@ struct SpendMateAppApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @AppStorage("isUserSignIn") var isUserSignIn: Bool = false
-   
+    
     // MARK: - BODY
     var body: some Scene {
         WindowGroup {
             if userIsActive {
-                if isUserSignIn {
-                    MainView()
-                        .environmentObject(authController)
-                        .environmentObject(profiController)
-                        .environmentObject(categoryController)
-                        .environmentObject(expenseController)
-                } else {
-                    SignInView()
-                        .environmentObject(authController)
-                        .environmentObject(profiController)
-                        .environmentObject(categoryController)
-                        .environmentObject(expenseController)
-                }
+                RootView()
+                    .environmentObject(authController)
+                    .environmentObject(profiController)
+                    .environmentObject(categoryController)
+                    .environmentObject(expenseController)
             } else {
                 WelcomeView()
                     .environmentObject(authController)
@@ -51,10 +42,9 @@ struct SpendMateAppApp: App {
     }
 }
 
-
 // MARK: - AppDelegate
 class AppDelegate: NSObject, UIApplicationDelegate {
-  
+
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
       FirebaseApp.configure()

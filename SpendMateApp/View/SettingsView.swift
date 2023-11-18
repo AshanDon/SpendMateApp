@@ -206,8 +206,7 @@ struct SettingsView: View {
                 message: Text("Are you sure you want to sign out?"),
                 primaryButton: .destructive(Text("Yes")) {
                     showLoadingView.toggle()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         signOutUser()
                     }
                 },
@@ -229,17 +228,14 @@ struct SettingsView: View {
     
     // MARK: - FUNCTION
     func signOutUser() {
-        Task {
-            
-            do {
-                try authController.signOutCurrentUser()
-            } catch {
-                print("Error:- \(error.localizedDescription)")
-            }
-            
+        do {
+            try authController.signOutCurrentUser()
             showLoadingView.toggle()
-            isUserSignIn = false
+            authController.signedIn = false
+        } catch {
+            print("Error:- \(error.localizedDescription)")
         }
+        
     }
     
     private func loadAuthenticationData(){

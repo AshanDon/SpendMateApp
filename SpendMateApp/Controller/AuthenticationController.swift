@@ -12,6 +12,8 @@ import FirebaseAuth
 
 class AuthenticationController: ObservableObject {
     
+    @Published var signedIn: Bool = false
+    
     var user = Authentication(id: "", email: "", password: "")
     
     func createUser() async throws -> Authentication {

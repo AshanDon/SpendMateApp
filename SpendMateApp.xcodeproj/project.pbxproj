@@ -23,6 +23,7 @@
 		E73397A12ACB666A004B14E8 /* InriaSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E73397A02ACB666A004B14E8 /* InriaSerif-Bold.ttf */; };
 		E73397A32ACB69D5004B14E8 /* InknutAntiqua-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E73397A22ACB69D5004B14E8 /* InknutAntiqua-Bold.ttf */; };
 		E735BBDF2ACF200B00531CB2 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E735BBDE2ACF200B00531CB2 /* SignInView.swift */; };
+		E73F8F102B092F2E00BAC7E0 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73F8F0F2B092F2E00BAC7E0 /* RootView.swift */; };
 		E7404B002ACC9344008B49F1 /* Intraduction.json in Resources */ = {isa = PBXBuildFile; fileRef = E7404AFF2ACC9344008B49F1 /* Intraduction.json */; };
 		E7404B032ACC93C8008B49F1 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B022ACC93C8008B49F1 /* Constant.swift */; };
 		E7404B052ACC93F5008B49F1 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7404B042ACC93F5008B49F1 /* Extension.swift */; };
@@ -62,6 +63,7 @@
 		E7DDF0762AD80DA9006549C0 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DDF0752AD80DA9006549C0 /* LoadingView.swift */; };
 		E7E1EBE72AE3F7B5009DC188 /* CategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E1EBE62AE3F7B5009DC188 /* CategoryController.swift */; };
 		E7E1EBE92AE3F8AD009DC188 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E1EBE82AE3F8AD009DC188 /* Category.swift */; };
+		E7F5C5792B03A7010005B54D /* VerifyEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F5C5782B03A7010005B54D /* VerifyEmailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +85,7 @@
 		E73397A02ACB666A004B14E8 /* InriaSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InriaSerif-Bold.ttf"; sourceTree = "<group>"; };
 		E73397A22ACB69D5004B14E8 /* InknutAntiqua-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "InknutAntiqua-Bold.ttf"; sourceTree = "<group>"; };
 		E735BBDE2ACF200B00531CB2 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		E73F8F0F2B092F2E00BAC7E0 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		E7404AFF2ACC9344008B49F1 /* Intraduction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Intraduction.json; sourceTree = "<group>"; };
 		E7404B022ACC93C8008B49F1 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		E7404B042ACC93F5008B49F1 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 		E7DDF0752AD80DA9006549C0 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		E7E1EBE62AE3F7B5009DC188 /* CategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryController.swift; sourceTree = "<group>"; };
 		E7E1EBE82AE3F8AD009DC188 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E7F5C5782B03A7010005B54D /* VerifyEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 				E70AF1C32AE00A2300DF3619 /* UpdateEmailView.swift */,
 				E77BA9882AFFF54E00A2ED18 /* UpdatePasswordView.swift */,
 				E72110F72B01476800C1084C /* AboutAppView.swift */,
+				E73F8F0F2B092F2E00BAC7E0 /* RootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 				E79D9BAB2AF7AABC000593BC /* EditExpenseView.swift */,
 				E72110F92B014C0400C1084C /* AboutTitleView.swift */,
 				E72110FB2B014C6300C1084C /* ApplicationRowView.swift */,
+				E7F5C5782B03A7010005B54D /* VerifyEmailView.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -394,12 +400,14 @@
 				E793BDAA2AF5855400126426 /* NoResultCell.swift in Sources */,
 				E7AE7FA82AD71700006B8C11 /* Authentication.swift in Sources */,
 				E7404B032ACC93C8008B49F1 /* Constant.swift in Sources */,
+				E73F8F102B092F2E00BAC7E0 /* RootView.swift in Sources */,
 				E7404B0A2ACC9B38008B49F1 /* OnboardView.swift in Sources */,
 				E77AB6AC2ADACEE600DC4224 /* NewProfile.swift in Sources */,
 				E72110FC2B014C6300C1084C /* ApplicationRowView.swift in Sources */,
 				E79D9BAC2AF7AABC000593BC /* EditExpenseView.swift in Sources */,
 				E7BE07022AD4413B00D1F139 /* SignUpView.swift in Sources */,
 				E793BDA82AF55BFA00126426 /* ExpenseDetailCard.swift in Sources */,
+				E7F5C5792B03A7010005B54D /* VerifyEmailView.swift in Sources */,
 				E78CD9C72AD9A5FC0017ECF3 /* ProfileCard.swift in Sources */,
 				E7404B052ACC93F5008B49F1 /* Extension.swift in Sources */,
 				E7AE7FAA2AD71751006B8C11 /* AuthenticationController.swift in Sources */,

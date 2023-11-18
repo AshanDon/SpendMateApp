@@ -9,6 +9,9 @@ import SwiftUI
 
 struct WelcomeView: View {
     
+    // MARK: - PROPERTIES
+    @EnvironmentObject private var auth: AuthenticationController
+    
     // MARK: - BODY
     var body: some View {
         ZStack {
@@ -26,6 +29,9 @@ struct WelcomeView: View {
                 BottomView()
             } //: VStack
         } //: ZStack
+        .onAppear {
+            auth.signedIn = false
+        }
     }
 }
 
@@ -110,7 +116,7 @@ struct BottomView: View {
         .padding(.horizontal, 42)
         .padding(.vertical, 50)
         .fullScreenCover(isPresented: $showMainView) {
-            SignInView()
+            RootView()
         }
     }
 }

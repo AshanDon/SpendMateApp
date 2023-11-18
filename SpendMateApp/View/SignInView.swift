@@ -69,7 +69,7 @@ struct SignInView: View {
                                     
                                 ZStack(alignment: .leading) {
                                     if email.isEmpty {
-                                        Text("@gmail.com")
+                                        Text(verbatim: "charles@gmail.com")
                                             .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
                                             .foregroundColor(Color.black.opacity(0.3))
                                             .padding(.bottom, 6)
@@ -81,6 +81,9 @@ struct SignInView: View {
                                         .keyboardType(.emailAddress)
                                         .focused($fieldfocus, equals: .emailField)
                                         .textFieldStyle(BottomLineTextFieldStyle(lineColor: fieldfocus == .emailField ? .accentColor : .black))
+                                        .submitLabel(.next)
+                                        .textInputAutocapitalization(.never)
+                                    
                                 }
                             } //: Email Group
                             .padding(.top, 30)
@@ -110,6 +113,8 @@ struct SignInView: View {
                                                 .padding(.bottom, 5)
                                             }
                                         }
+                                        .submitLabel(.done)
+                                        .textInputAutocapitalization(.never)
                                 } else {
                                     ZStack(alignment: .leading) {
                                         if password.isEmpty {
@@ -139,6 +144,8 @@ struct SignInView: View {
                                                     .padding(.bottom, 5)
                                                 }
                                             }
+                                            .submitLabel(.done)
+                                            .textInputAutocapitalization(.never)
                                     }
                                     }
                                   
@@ -264,7 +271,7 @@ struct SignInView: View {
                 if !user.uid.isEmpty {
                     
                     currentUser = user.uid
-                    isUserSignIn = true
+                    authController.signedIn = true
                     
                     showLoadingView.toggle()
                     showMainView.toggle()
