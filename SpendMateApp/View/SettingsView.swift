@@ -11,7 +11,6 @@ struct SettingsView: View {
     
     // MARK: - PROPERTIES
     @AppStorage("isUserSignIn") var isUserSignIn: Bool?
-    @AppStorage("ProfileComplete") private var isProfileComplete: Bool = false
     
     @State private var showSignOutAlert: Bool = false
     @State private var showLoadingView: Bool = false
@@ -37,7 +36,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                if !isProfileComplete {
+                if profileController.isCompletedProfile {
                     Section {
                         ProfileCard(userId: $userId,
                                     email: $email,
@@ -68,7 +67,7 @@ struct SettingsView: View {
                 }
                 
                 
-                if !isProfileComplete {
+                if profileController.isCompletedProfile {
                     Section("Profile") {
                         Button(action: {
                             showUpdateProfileView.toggle()

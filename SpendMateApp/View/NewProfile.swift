@@ -31,8 +31,6 @@ struct NewProfile: View {
     @Environment(\.dismiss) private var dismiss
     
     @AppStorage("CurrentUser") private var currentUser: String?
-    @AppStorage("ProfileComplete") private var isProfileComplete: Bool?
-    
     // MARK: - BODY
     var body: some View {
         ZStack {
@@ -240,7 +238,7 @@ struct NewProfile: View {
                 
                 showLoadingView.toggle()
 
-                isProfileComplete = false
+                profileController.isCompletedProfile = true
 
                 dismiss()
 

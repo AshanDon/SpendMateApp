@@ -21,8 +21,11 @@ struct ExpensesView: View {
     @State private var alertMessage: String = ""
     
     @EnvironmentObject private var expenseController: ExpenseController
+    @EnvironmentObject private var profileController: ProfileController
     
     @AppStorage("CurrentUser") private var currentUser: String?
+    
+    @Binding var currentTab: String
     
     // MARK: - BODY
     var body: some View {
@@ -87,6 +90,7 @@ struct ExpensesView: View {
         }
         .onAppear {
             DispatchQueue.main.async {
+                isCompleteProfile()
                 loadExpenses()
             }
         }
@@ -146,10 +150,27 @@ struct ExpensesView: View {
             }
         }
     }
+    
+    private func isCompleteProfile(){
+        Task {
+            do {
+                if let userId = currentUser {
+                    let profile = try await profileController.getProfile(userId: userId)
+                    
+                    if !profile.first_name.isEmpty {
+                        currentTab = "Expenses"
+                        profileController.isCompletedProfile = true
+                    }
+                }
+            } catch {
+                currentTab = "Settings"
+            }
+        }
+    }
 }
 
 struct ExpensesView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpensesView()
+        ExpensesView(currentTab: .constant("Expenses"))
     }
 }

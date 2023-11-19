@@ -11,16 +11,11 @@ struct MainView: View {
     
     // MARK: - PROPERTIES
     @State private var currentTab: String = "Expenses"
-    
-    @AppStorage("ProfileComplete") private var isProfileComplete: Bool = false
-    @AppStorage("CurrentUser") private var currentUser: String?
-    
-    @EnvironmentObject private var profileController: ProfileController
-    
+
     // MARK: - BODY
     var body: some View {
         TabView(selection: $currentTab) {
-            ExpensesView()
+            ExpensesView(currentTab: $currentTab)
                 .tag("Expenses")
                 .tabItem {
                     Image(systemName: "creditcard")
@@ -41,41 +36,8 @@ struct MainView: View {
                     Text("Settings")
                 }
         } //: TabView
-        .onAppear{
-            
-            if isProfileComplete == false {
-                isCompleteProfile()
-            }
-            
-            currentTab = isProfileComplete ? "Settings" : "Expenses"
-        }
     }
     
-    
-    // MARK: - FUNCTION
-    private func isCompleteProfile(){
-        Task {
-            guard let userId = currentUser else {
-                return
-            }
-            
-            do {
-                let profile = try await profileController.getProfile(userId: userId)
-                
-                if !profile.first_name.isEmpty {
-                    
-                    isProfileComplete = false
-                    
-                    currentTab = "Expenses"
-                }
-            } catch {
-                
-                isProfileComplete = true
-                
-                currentTab = "Settings"
-            }
-        }
-    }
 }
 
 struct TabView_Previews: PreviewProvider {

@@ -12,6 +12,8 @@ import FirebaseStorage
 
 class ProfileController: ObservableObject {
     
+    @Published var isCompletedProfile: Bool = false
+    
     let db = Firestore.firestore()
     private let storage = Storage.storage()
     
