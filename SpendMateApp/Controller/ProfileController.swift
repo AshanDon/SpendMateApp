@@ -128,4 +128,22 @@ class ProfileController: ObservableObject {
                 .setData(profileData, mergeFields: mergeFields)
         }
     }
+    
+    func deleteProfile(userId: String) async throws {
+        
+        let docRef = db.collection("profile")
+            .document(userId)
+        
+        try await docRef.delete()
+        try await deleteProfileImage(userId: userId)
+    }
+    
+    private func deleteProfileImage(userId: String) async throws {
+        
+        let path = "\(userId).jpeg"
+        
+        let proRef = profileImageReference.child(path)
+        
+        try await proRef.delete()
+    }
 }

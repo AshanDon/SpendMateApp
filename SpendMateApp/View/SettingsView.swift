@@ -28,6 +28,7 @@ struct SettingsView: View {
     @State private var showDeleteAlert: Bool = false
     @State private var showEditPasswordView: Bool = false
     @State private var showAboutApp: Bool = false
+    @State private var showDeleteView: Bool = false
     
     @EnvironmentObject private var authController: AuthenticationController
     @EnvironmentObject private var profileController: ProfileController
@@ -140,13 +141,10 @@ struct SettingsView: View {
                     .alert(isPresented: $showDeleteAlert) {
                         Alert(title: Text(alertTitle.rawValue),
                               message: Text(alertMessage),
-                              primaryButton: .destructive(Text("Delete")){
-                                DispatchQueue.main.async {
-                                    showLoadingView.toggle()
-                                    deleteAccount()
-                                }
+                              primaryButton: .destructive(Text("Yes")){
+                                showDeleteView.toggle()
                               },
-                              secondaryButton: .cancel())
+                              secondaryButton: .cancel(Text("No")))
                     }
                     
                 } //: Account Section
@@ -197,6 +195,9 @@ struct SettingsView: View {
             }
             .navigationDestination(isPresented: $showAboutApp) {
                 AboutAppView()
+            }
+            .navigationDestination(isPresented: $showDeleteView) {
+                DeleteAccountView()
             }
         } //: NavigationStack
         .alert(isPresented: $showSignOutAlert) {
@@ -255,21 +256,6 @@ struct SettingsView: View {
                 isEmailVerified = try await authController.isEmailVerified()
             } catch {
                 print("Error:- \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    private func deleteAccount(){
-        Task {
-            do {
-                try await authController.deleteProfile()
-                
-                signOutUser()
-                
-            } catch {
-                alertTitle = .error
-                alertMessage = error.localizedDescription
-                showAlertView.toggle()
             }
         }
     }

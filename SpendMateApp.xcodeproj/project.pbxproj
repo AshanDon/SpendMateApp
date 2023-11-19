@@ -56,6 +56,7 @@
 		E7AE7FB12AD722E7006B8C11 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E7AE7FB02AD722E7006B8C11 /* FirebaseAnalyticsSwift */; };
 		E7AE7FB32AD722E7006B8C11 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E7AE7FB22AD722E7006B8C11 /* FirebaseAuth */; };
 		E7BC38D52B0A788200E17299 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E7BC38D42B0A788200E17299 /* FirebaseFirestore */; };
+		E7BC38D72B0A7DF700E17299 /* DeleteAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC38D62B0A7DF700E17299 /* DeleteAccountView.swift */; };
 		E7BE07022AD4413B00D1F139 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE07012AD4413B00D1F139 /* SignUpView.swift */; };
 		E7C811C72ADF211500BC824D /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C811C62ADF211500BC824D /* UpdateProfile.swift */; };
 		E7CF658C2ADEA4470036FE3D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E7CF658B2ADEA4470036FE3D /* FirebaseStorage */; };
@@ -113,6 +114,7 @@
 		E7AE7FA72AD71700006B8C11 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		E7AE7FA92AD71751006B8C11 /* AuthenticationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationController.swift; sourceTree = "<group>"; };
 		E7AE7FAB2AD72134006B8C11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E7BC38D62B0A7DF700E17299 /* DeleteAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountView.swift; sourceTree = "<group>"; };
 		E7BE07012AD4413B00D1F139 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		E7C811C62ADF211500BC824D /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
 		E7D301432AEACB510061075E /* EditCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCategoryView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				E77BA9882AFFF54E00A2ED18 /* UpdatePasswordView.swift */,
 				E72110F72B01476800C1084C /* AboutAppView.swift */,
 				E73F8F0F2B092F2E00BAC7E0 /* RootView.swift */,
+				E7BC38D62B0A7DF700E17299 /* DeleteAccountView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				E7D301442AEACB510061075E /* EditCategoryView.swift in Sources */,
 				E733978C2ACB4CBC004B14E8 /* SpendMateAppApp.swift in Sources */,
 				E705654D2AEC3C48001F5801 /* ExpensesCardView.swift in Sources */,
+				E7BC38D72B0A7DF700E17299 /* DeleteAccountView.swift in Sources */,
 				E7404B102ACCB18F008B49F1 /* ExpensesView.swift in Sources */,
 				E77AB6B52ADB208400DC4224 /* ProfileController.swift in Sources */,
 				E7C811C72ADF211500BC824D /* UpdateProfile.swift in Sources */,
