@@ -42,7 +42,8 @@ struct SettingsView: View {
                         ProfileCard(userId: $userId,
                                     email: $email,
                                     viewOpacitiy: $profileCardOpacity,
-                                    showVerifyEmailButton: $isEmailVerified)
+                                    showVerifyEmailButton: $isEmailVerified,
+                                    reload: $showUpdateProfileView)
                             .opacity(profileCardOpacity == 0 ? 0 : 1)
                             .overlay {
                                 ZStack(alignment: .center) {

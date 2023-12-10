@@ -155,12 +155,9 @@ struct ExpensesView: View {
         Task {
             do {
                 if let userId = currentUser {
-                    let profile = try await profileController.getProfile(userId: userId)
+                    _ = try await profileController.getProfile(userId: userId)
                     
-                    if !profile.first_name.isEmpty {
-                        currentTab = "Expenses"
-                        profileController.isCompletedProfile = true
-                    }
+                    profileController.isCompletedProfile = true
                 }
             } catch {
                 currentTab = "Settings"

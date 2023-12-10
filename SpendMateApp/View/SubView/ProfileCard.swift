@@ -21,6 +21,7 @@ struct ProfileCard: View {
     @Binding var email: String
     @Binding var viewOpacitiy: Double
     @Binding var showVerifyEmailButton: Bool
+    @Binding var reload: Bool
     
     @EnvironmentObject private var profileController: ProfileController
     @EnvironmentObject private var authController: AuthenticationController
@@ -102,6 +103,11 @@ struct ProfileCard: View {
         .alert(isPresented: $showAlertMessage) {
             Alert(title: Text(alertTitle.rawValue), message: Text(alertMessage), dismissButton: .cancel())
         }
+        .onChange(of: reload) { isUpdate in
+            if isUpdate {
+                loadCurrentUserData()
+            }
+        }
     }
     
     
@@ -143,7 +149,7 @@ struct ProfileCard: View {
 
 struct ProfileCard_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileCard(userId: .constant(""), email: .constant(""), viewOpacitiy: .constant(1), showVerifyEmailButton: .constant(true))
+        ProfileCard(userId: .constant(""), email: .constant(""), viewOpacitiy: .constant(1), showVerifyEmailButton: .constant(true), reload: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }
