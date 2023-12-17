@@ -32,6 +32,7 @@ struct AddNewExpensesView: View {
     @Binding var isSaveExpense: Bool
     
     @AppStorage("CurrentUser") private var currentUser: String?
+    @AppStorage("isLocalCurrency") var isLocalCurrency: String?
     
     // Decimal Formatter
     var formatter: NumberFormatter {
@@ -66,7 +67,7 @@ struct AddNewExpensesView: View {
                 
                 Section("Amount Spent") {
                     HStack(spacing: 4) {
-                        Text("QAR")
+                        Text("\(isLocalCurrency ?? localeCurrencyType)")
                             .fontWeight(.semibold)
                         
                         TextField("0.0", value: $amount, formatter: formatter)

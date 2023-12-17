@@ -12,6 +12,8 @@ struct ExpensesCardView: View {
     // MARK: - PROPERTIES
     var expenses: Expense
     
+    @AppStorage("isLocalCurrency") var isLocalCurrency: String?
+    
     // MARK: - BODY
     var body: some View {
         HStack(alignment: .center) {
@@ -49,7 +51,7 @@ struct ExpensesCardView: View {
             
             Spacer()
             
-            Text("QAR \(Int(expenses.amount))")
+            Text("\(isLocalCurrency ?? localeCurrencyType) \(expenses.amount, specifier: "%.2f")")
                 .font(.custom("Roboto-Bold", size: 18))
                 .foregroundColor(.black)
                 .lineSpacing(10)

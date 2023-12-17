@@ -11,6 +11,7 @@ struct ExpenseDetailCard: View {
     
     // MARK: - PROPERTIES
     var expens: Expense
+    @AppStorage("isLocalCurrency") var isLocalCurrency: String?
     
     // MARK: - BODY
     var body: some View {
@@ -33,7 +34,7 @@ struct ExpenseDetailCard: View {
             
             Spacer()
             
-            Text("QAR \(expens.amount.formatted(.number))")
+            Text("\(isLocalCurrency ?? localeCurrencyType) \(expens.amount, specifier: "%.2f")")
                 .font(.custom("Roboto-Bold", size: 18))
                 .foregroundColor(.black)
                 .lineSpacing(10)

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import UIKit
 
 // MARK: - Bundle
 extension Bundle {
@@ -78,4 +79,11 @@ extension UIApplication {
             return (keyWindow?.safeAreaInsets.top)!
 
         }
+}
+
+// MARK: - VIEW
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
 }

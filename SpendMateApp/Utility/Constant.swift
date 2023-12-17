@@ -11,8 +11,11 @@ import SwiftUI
 
 // MARK: - Data
 let intraductions: [Intraduction] = Bundle.main.decode("Intraduction.json")
-let feedback: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+let currencyList: [CurrencyType] = Bundle.main.decode("Currency.json")
 
+// MARK: - System
+let feedback: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+let localeCurrencyType: String = Locale.current.currency!.identifier
 
 
 // MARK: - UI
@@ -32,3 +35,8 @@ struct BottomLineTextFieldStyle: TextFieldStyle {
         } //: VStack
     }
 }
+
+/*
+ 
+ 
+ */

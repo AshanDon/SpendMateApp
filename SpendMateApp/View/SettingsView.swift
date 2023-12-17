@@ -11,6 +11,7 @@ struct SettingsView: View {
     
     // MARK: - PROPERTIES
     @AppStorage("isUserSignIn") var isUserSignIn: Bool?
+    @AppStorage("isLocalCurrency") var isLocalCurrency: String?
     
     @State private var showSignOutAlert: Bool = false
     @State private var showLoadingView: Bool = false
@@ -29,6 +30,7 @@ struct SettingsView: View {
     @State private var showEditPasswordView: Bool = false
     @State private var showAboutApp: Bool = false
     @State private var showDeleteView: Bool = false
+    @State private var showUpdateCurrencyView: Bool = false
     
     @EnvironmentObject private var authController: AuthenticationController
     @EnvironmentObject private var profileController: ProfileController
@@ -85,6 +87,27 @@ struct SettingsView: View {
                         }
                     } //: Profile Section
                 }
+                
+                Section("Currency & Wallet") {
+                    Button(action: {
+                        showUpdateCurrencyView.toggle()
+                    }) {
+                        HStack {
+                            Text("Change Currency")
+                                .font(.custom("Inter-VariableFont_slnt,wght", size: 14))
+                                .foregroundColor(Color("#666666"))
+                                .lineSpacing(10)
+                            
+                            Spacer()
+                            
+                            
+                            Text(isLocalCurrency ?? localeCurrencyType)
+                                .font(.custom("Roboto-Bold", size: 14))
+                                .foregroundColor(Color("#666666"))
+                                .lineSpacing(10)
+                        }
+                    }
+                } //: Currency & Wallet Section
                 
                 Section("Account") {
                     Button(action: {
@@ -199,6 +222,9 @@ struct SettingsView: View {
             }
             .navigationDestination(isPresented: $showDeleteView) {
                 DeleteAccountView()
+            }
+            .navigationDestination(isPresented: $showUpdateCurrencyView) {
+                ChangeCurrencyView()
             }
         } //: NavigationStack
         .alert(isPresented: $showSignOutAlert) {
