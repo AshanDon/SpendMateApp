@@ -41,7 +41,7 @@ struct AboutAppView: View {
                         ApplicationRowView(name: "Compatibility", content: "iOS 16.4")
                         ApplicationRowView(name: "SwiftUI", content: "4.0")
                         ApplicationRowView(name: "Firebase", content: "10.16.0")
-                        ApplicationRowView(name: "Version", content: "0.0.1")
+                        ApplicationRowView(name: "Version", content: "0.0.2")
                         ApplicationRowView(name: "GitHub", linkName: "AshanDon", destination: "github.com/AshanDon/SpendMateApp.git")
                         ApplicationRowView(name: "Linkedin", linkName: "Ashan Anuruddika", destination: "www.linkedin.com/in/ashan-anuruddika-464a87112/")
                         ApplicationRowView(name: "Instagram", linkName: "ash_iosdev", destination: "instagram.com/ash_iosdev?igshid=NzZlODBkYWE4Ng%3D%3D&utm_source=qr")
