@@ -14,7 +14,8 @@ struct Category: Codable, Hashable{
     @DocumentID var id: String?
     var categoryName: String
     var createdDate: Date?
-    
+    var important: Bool?
+    var tagId: Int?
     var expenses: [Expense]?
     
 }

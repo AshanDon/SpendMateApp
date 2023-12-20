@@ -12,6 +12,11 @@ struct ExpensesCardView: View {
     // MARK: - PROPERTIES
     var expenses: Expense
     
+    @AppStorage("isLocalCurrency") var isLocalCurrency: String?
+    @AppStorage("CurrentUser") private var currentUser: String?
+    
+    @EnvironmentObject private var categoryController: CategoryController
+    
     // MARK: - BODY
     var body: some View {
         HStack(alignment: .center) {
@@ -38,8 +43,12 @@ struct ExpensesCardView: View {
                     .padding(.vertical, 7)
                     .padding(.horizontal, 24)
                     .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.accentColor)
+                        ForEach(categoryController.categorys, id: \.self) { category in
+                            if expenses.category == category.categoryName {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color(hex: tagList[category.tagId ?? 0].hex_code))
+                            }
+                        }
                     )
                     .padding(.vertical, 8)
             } //: VStack
@@ -49,13 +58,32 @@ struct ExpensesCardView: View {
             
             Spacer()
             
-            Text("QAR \(Int(expenses.amount))")
+            Text("\(isLocalCurrency ?? localeCurrencyType) \(expenses.amount, specifier: "%.2f")")
                 .font(.custom("Roboto-Bold", size: 18))
                 .foregroundColor(.black)
                 .lineSpacing(10)
                 .multilineTextAlignment(.center)
                 .padding(.trailing, 7)
         } //: HStack
+        .onAppear {
+            DispatchQueue.main.async {
+                getAllCategorys()
+            }
+        }
+    }
+    
+    
+    // MARK: - FUNCTION
+    private func getAllCategorys(){
+        Task {
+            do {
+                if let userId = currentUser {
+                    try categoryController.fetchCategory(userId: userId)
+                }
+            }catch {
+                print("Categorys Error")
+            }
+        }
     }
 }
 

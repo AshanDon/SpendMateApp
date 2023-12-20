@@ -32,6 +32,7 @@ struct EditExpenseView: View {
     @Binding var isUpdated: Bool
     
     @AppStorage("CurrentUser") private var currentUser: String?
+    @AppStorage("isLocalCurrency") var isLocalCurrency: String?
     
     private var disableDoneButton: Bool {
         return title.isEmpty || description.isEmpty || amount <= 0
@@ -65,7 +66,7 @@ struct EditExpenseView: View {
                 
                 Section("Amount Spent") {
                     HStack(spacing: 4) {
-                        Text("QAR")
+                        Text("\(isLocalCurrency ?? localeCurrencyType)")
                             .fontWeight(.semibold)
                         
                         TextField("0.00", value: $amount, formatter: formatter)
