@@ -11,6 +11,7 @@ import FirebaseFirestore
 class CategoryController: ObservableObject {
     
     @Published var categorys = [Category]()
+    @Published var importantCount = 0
     
     private let db = Firestore.firestore()
     
@@ -88,5 +89,21 @@ class CategoryController: ObservableObject {
         ]
         
         try await docRef.updateData(updateField)
+    }
+    
+    func getImportantCount(userId: String) {
+        db.collection("App")
+          .document(userId)
+          .collection("categorys")
+          .whereField("important", isEqualTo: true)
+          .getDocuments { [self] snapshot, error in
+              guard let documents = snapshot?.documents else {
+                print("No documents")
+                return
+              }
+              
+              
+              self.importantCount = documents.count
+        }
     }
 }

@@ -21,7 +21,6 @@ struct CategoriesView: View {
     @State private var showAlertView: Bool = false
     @State private var alertMessage: String = ""
     
-    
     @EnvironmentObject private var categoryController: CategoryController
     @EnvironmentObject private var expenseController: ExpenseController
     
@@ -29,38 +28,53 @@ struct CategoriesView: View {
     var body: some View {
         NavigationStack {
             List {
-                if !categoryController.categorys.isEmpty {
-                    ForEach(categoryController.categorys, id: \.self) { categoryData in
-                        DisclosureGroup {
-                            ForEach(expenseController.expenses, id: \.self) { expenseData in
-                                
-                                if categoryData.categoryName == expenseData.category {
-                                    ExpenseDetailCard(expens: expenseData)
-                                }
-                            }
-                        } label: {
-                            CategoryHeaderCell(categoryData: categoryData, isViewUpdated: $reloadList)
-                                .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                                    Button(role: .destructive) {
-                                        selectedRowData = categoryData
-                                        alertTitle = .warning
-                                        showDeleteConformation.toggle()
-                                    } label: {
-                                        Label("Delete", systemImage: "trash")
-                                    } //: Delete Category Button
+                
+                Section("All") {
+                    if !categoryController.categorys.isEmpty {
+                        ForEach(categoryController.categorys, id: \.self) { categoryData in
+                            DisclosureGroup {
+                                ForEach(expenseController.expenses, id: \.self) { expenseData in
                                     
-                                    Button(role: .none) {
-                                        selectedRowData = categoryData
-                                        showEditCategoryView.toggle()
-                                    } label: {
-                                        Label("Edit", systemImage: "pencil")
-                                    } //: Edit Category Button
-                                    .tint(.yellow)
-                                } //: Swipe Action
-                        } //: DisclosureGroup
+                                    if categoryData.categoryName == expenseData.category {
+                                        ExpenseDetailCard(expens: expenseData)
+                                    }
+                                }
+                            } label: {
+                                CategoryHeaderCell(categoryData: categoryData, isViewUpdated: $reloadList)
+                                    .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                        Button(role: .destructive) {
+                                            selectedRowData = categoryData
+                                            alertTitle = .warning
+                                            showDeleteConformation.toggle()
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        } //: Delete Category Button
+                                        
+                                        Button(role: .none) {
+                                            selectedRowData = categoryData
+                                            showEditCategoryView.toggle()
+                                        } label: {
+                                            Label("Edit", systemImage: "pencil")
+                                        } //: Edit Category Button
+                                        .tint(.yellow)
+                                    } //: Swipe Action
+                            } //: DisclosureGroup
+                        }
                     }
+                } //: All Category Section
+                
+                if categoryController.importantCount > 0 ? true : false {
+                    Section("Important") {
+                        ForEach(categoryController.categorys, id: \.self) { category in
+                            if let isImportant = category.important, isImportant {
+                                Text(category.categoryName)
+                            }
+                        }
+                    } //: Important Section
                 }
+        
             } //: List
+            .listStyle(.insetGrouped)
             .navigationTitle("Categories")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -94,6 +108,8 @@ struct CategoriesView: View {
         .onAppear{
             DispatchQueue.main.async {
                 fetchCategory()
+                
+                getImportantCateCount()
             }
         }
         .onDisappear {
@@ -103,6 +119,8 @@ struct CategoriesView: View {
             if isReload {
                 DispatchQueue.main.async {
                     fetchCategory()
+                    
+                    getImportantCateCount()
                 }
                 
                 self.reloadList.toggle()
@@ -165,6 +183,12 @@ struct CategoriesView: View {
             } catch {
                 print("fetching error:- \(error.localizedDescription)")
             }
+        }
+    }
+    
+    private func getImportantCateCount(){
+        if let userId = currentUser {
+            categoryController.getImportantCount(userId: userId)
         }
     }
 }
