@@ -13,6 +13,9 @@ struct ExpensesCardView: View {
     var expenses: Expense
     
     @AppStorage("isLocalCurrency") var isLocalCurrency: String?
+    @AppStorage("CurrentUser") private var currentUser: String?
+    
+    @EnvironmentObject private var categoryController: CategoryController
     
     // MARK: - BODY
     var body: some View {
@@ -40,8 +43,12 @@ struct ExpensesCardView: View {
                     .padding(.vertical, 7)
                     .padding(.horizontal, 24)
                     .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.accentColor)
+                        ForEach(categoryController.categorys, id: \.self) { category in
+                            if expenses.category == category.categoryName {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color(hex: tagList[category.tagId ?? 0].hex_code))
+                            }
+                        }
                     )
                     .padding(.vertical, 8)
             } //: VStack
@@ -58,6 +65,25 @@ struct ExpensesCardView: View {
                 .multilineTextAlignment(.center)
                 .padding(.trailing, 7)
         } //: HStack
+        .onAppear {
+            DispatchQueue.main.async {
+                getAllCategorys()
+            }
+        }
+    }
+    
+    
+    // MARK: - FUNCTION
+    private func getAllCategorys(){
+        Task {
+            do {
+                if let userId = currentUser {
+                    try categoryController.fetchCategory(userId: userId)
+                }
+            }catch {
+                print("Categorys Error")
+            }
+        }
     }
 }
 

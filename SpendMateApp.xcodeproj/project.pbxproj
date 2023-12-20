@@ -47,6 +47,9 @@
 		E78CD9C32AD9937C0017ECF3 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */; };
 		E78CD9C52AD9A2D00017ECF3 /* EmptyProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */; };
 		E78CD9C72AD9A5FC0017ECF3 /* ProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */; };
+		E792E5892B30AA1700F6B164 /* CategoryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792E5882B30AA1700F6B164 /* CategoryHeaderCell.swift */; };
+		E792E58B2B30B5C700F6B164 /* Tags.json in Resources */ = {isa = PBXBuildFile; fileRef = E792E58A2B30B5C700F6B164 /* Tags.json */; };
+		E792E58D2B30B5FC00F6B164 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792E58C2B30B5FC00F6B164 /* Tag.swift */; };
 		E793BDA82AF55BFA00126426 /* ExpenseDetailCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E793BDA72AF55BFA00126426 /* ExpenseDetailCard.swift */; };
 		E793BDAA2AF5855400126426 /* NoResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E793BDA92AF5855400126426 /* NoResultCell.swift */; };
 		E79D9BAC2AF7AABC000593BC /* EditExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79D9BAB2AF7AABC000593BC /* EditExpenseView.swift */; };
@@ -113,6 +116,9 @@
 		E78CD9C22AD9937C0017ECF3 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		E78CD9C42AD9A2D00017ECF3 /* EmptyProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyProfileCard.swift; sourceTree = "<group>"; };
 		E78CD9C62AD9A5FC0017ECF3 /* ProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCard.swift; sourceTree = "<group>"; };
+		E792E5882B30AA1700F6B164 /* CategoryHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderCell.swift; sourceTree = "<group>"; };
+		E792E58A2B30B5C700F6B164 /* Tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tags.json; sourceTree = "<group>"; };
+		E792E58C2B30B5FC00F6B164 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		E793BDA72AF55BFA00126426 /* ExpenseDetailCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseDetailCard.swift; sourceTree = "<group>"; };
 		E793BDA92AF5855400126426 /* NoResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultCell.swift; sourceTree = "<group>"; };
 		E79D9BAB2AF7AABC000593BC /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; };
@@ -225,6 +231,7 @@
 				E7E1EBE82AE3F8AD009DC188 /* Category.swift */,
 				E70565482AEC16F7001F5801 /* Expense.swift */,
 				E7F6D1702B2A1B5400D6B8FA /* CurrencyType.swift */,
+				E792E58C2B30B5FC00F6B164 /* Tag.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				E775DD792B2A3C1E00376242 /* Currency.json */,
+				E792E58A2B30B5C700F6B164 /* Tags.json */,
 				E7404AFF2ACC9344008B49F1 /* Intraduction.json */,
 			);
 			path = Data;
@@ -290,6 +298,7 @@
 				E72110FB2B014C6300C1084C /* ApplicationRowView.swift */,
 				E7F5C5782B03A7010005B54D /* VerifyEmailView.swift */,
 				E7F6D1722B2A21E300D6B8FA /* ChangeCurrencyView.swift */,
+				E792E5882B30AA1700F6B164 /* CategoryHeaderCell.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -382,6 +391,7 @@
 				E73397A12ACB666A004B14E8 /* InriaSerif-Bold.ttf in Resources */,
 				E73397932ACB4CBF004B14E8 /* Preview Assets.xcassets in Resources */,
 				E73397902ACB4CBF004B14E8 /* Assets.xcassets in Resources */,
+				E792E58B2B30B5C700F6B164 /* Tags.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +408,7 @@
 				E7E1EBE72AE3F7B5009DC188 /* CategoryController.swift in Sources */,
 				E76A10DA2ACDBC380019BE05 /* AddNewExpensesView.swift in Sources */,
 				E7404B072ACC9639008B49F1 /* Intraduction.swift in Sources */,
+				E792E5892B30AA1700F6B164 /* CategoryHeaderCell.swift in Sources */,
 				E78CD9C52AD9A2D00017ECF3 /* EmptyProfileCard.swift in Sources */,
 				E78581D92AD9868600573FD8 /* SettingsView.swift in Sources */,
 				E72110F82B01476800C1084C /* AboutAppView.swift in Sources */,
@@ -433,6 +444,7 @@
 				E77AB6B32ADB1D8200DC4224 /* Profile.swift in Sources */,
 				E7E1EBE92AE3F8AD009DC188 /* Category.swift in Sources */,
 				E70AF1C42AE00A2300DF3619 /* UpdateEmailView.swift in Sources */,
+				E792E58D2B30B5FC00F6B164 /* Tag.swift in Sources */,
 				E72B64AF2ACDFEB40017BB7C /* AddNewCategoryView.swift in Sources */,
 				E735BBDF2ACF200B00531CB2 /* SignInView.swift in Sources */,
 			);

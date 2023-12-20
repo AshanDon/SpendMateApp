@@ -12,6 +12,7 @@ import SwiftUI
 // MARK: - Data
 let intraductions: [Intraduction] = Bundle.main.decode("Intraduction.json")
 let currencyList: [CurrencyType] = Bundle.main.decode("Currency.json")
+let tagList: [Tag] = Bundle.main.decode("Tags.json")
 
 // MARK: - System
 let feedback: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
@@ -36,7 +37,10 @@ struct BottomLineTextFieldStyle: TextFieldStyle {
     }
 }
 
-/*
- 
- 
- */
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 1.5 : 1.0)
+            .animation(.easeInOut, value: configuration.isPressed)
+    }
+}

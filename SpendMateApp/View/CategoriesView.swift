@@ -21,6 +21,7 @@ struct CategoriesView: View {
     @State private var showAlertView: Bool = false
     @State private var alertMessage: String = ""
     
+    
     @EnvironmentObject private var categoryController: CategoryController
     @EnvironmentObject private var expenseController: ExpenseController
     
@@ -38,7 +39,7 @@ struct CategoriesView: View {
                                 }
                             }
                         } label: {
-                            Text(categoryData.categoryName)
+                            CategoryHeaderCell(categoryData: categoryData, isViewUpdated: $reloadList)
                                 .swipeActions(edge: .leading, allowsFullSwipe: false) {
                                     Button(role: .destructive) {
                                         selectedRowData = categoryData

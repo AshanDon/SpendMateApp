@@ -90,23 +90,29 @@ struct AddNewExpensesView: View {
                 
                 Section("Date") {
                     DatePicker("", selection: $date, in: ...Date(), displayedComponents: [.date])
-                        .datePickerStyle(.graphical)
+                        .datePickerStyle(.wheel)
                         .labelsHidden()
                 }
                 
-                HStack {
-                    Text("Category")
-                    
-                    Spacer()
-                    
+                
+                Section("Category") {
+        
                     Picker("", selection: $categoryName) {
                         Text("").tag("")
                         ForEach(cateController.categorys, id: \.self) { data in
-                            Text(data.categoryName).tag(data.categoryName)
+                            HStack(alignment: .center, spacing: 10) {
+                                Circle()
+                                    .fill(Color.init(hex: tagList[data.tagId ?? 0].hex_code))
+                                    .frame(width: 15, height: 15)
+                                
+                                Text(data.categoryName)
+                            } //: HStack
+                            .tag(data.categoryName)
                         }
                     } //: Category Picker
-                    .pickerStyle(.menu)
+                    .pickerStyle(.wheel)
                     .labelsHidden()
+                    .frame(height: 100)
                 } //: HStack
             } //: List
             .navigationTitle("Add Expense")

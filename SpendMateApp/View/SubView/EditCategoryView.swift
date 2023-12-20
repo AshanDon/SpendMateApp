@@ -20,19 +20,21 @@ struct EditCategoryView: View {
     
     @State private var editCategoryName: String = ""
     @State private var oldCategoryName: String = ""
+    @State private var selectedTagId: Int = 0
+    @State private var oldTagId: Int = 0
     
     @FocusState private var textFocus: Bool
     
     @AppStorage("CurrentUser") private var currentUser: String?
     
     private var enableEditButton: Bool {
-        return editCategoryName.isEmpty
+        return selectedTagId == oldTagId  ? editCategoryName.isEmpty ? true : false : false
     }
     
     // MARK: - BODY
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
+            List {
                 Section("Title") {
                     TextField(category!.categoryName, text: $editCategoryName)
                         .keyboardType(.namePhonePad)
@@ -40,15 +42,38 @@ struct EditCategoryView: View {
                         .submitLabel(.done)
                         .textInputAutocapitalization(.words)
                         .onSubmit {
-                            if var category = category {
+                            if var category = category, !editCategoryName.isEmpty {
                                 category.categoryName = editCategoryName
                                 self.category = category
                             }
                         
                         }
-                }
-                .padding(.horizontal, 20)
-            } //: VStack
+                } //: Title Section
+                
+                Section("Tags") {
+                    HStack(alignment: .firstTextBaseline, spacing: 20) {
+                        ForEach(tagList) { tag in
+                            Circle()
+                                .fill(Color.init(hex: tag.hex_code))
+                                .frame(width: 20, height: 20, alignment: .center)
+                                .overlay {
+                                    Circle()
+                                        .stroke(category!.tagId ?? 0 == tag.id ? Color.init(hex: tag.hex_code) : .clear, lineWidth: 1.5)
+                                        .frame(width: 25, height: 25, alignment: .center)
+                                }
+                                .onTapGesture {
+                                    self.selectedTagId = tag.id
+                                    
+                                    if var category = category {
+                                        category.tagId = self.selectedTagId
+                                        self.category = category
+                                    }
+                                }
+                            
+                        } //: Loop
+                    }
+                } //: Tags Section
+            } //: List
             .navigationTitle("Edit Category")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -70,10 +95,11 @@ struct EditCategoryView: View {
             .onAppear {
                 if let category = category {
                     oldCategoryName = category.categoryName
+                    oldTagId = category.tagId ?? 0
                 }
             }
         } //: Navigation Stack
-        .presentationDetents([.height(180)])
+        .presentationDetents([.height(280)])
         .presentationCornerRadius(20)
         .interactiveDismissDisabled()
     }

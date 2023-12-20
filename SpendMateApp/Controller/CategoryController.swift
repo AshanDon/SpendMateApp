@@ -22,7 +22,9 @@ class CategoryController: ObservableObject {
             "categoryId": documentId,
             "profileId": userId,
             "categoryName": category.categoryName,
-            "createdDate": Timestamp()
+            "createdDate": Timestamp(),
+            "important": category.important ?? false,
+            "tagId": category.tagId ?? 0
         ]
         
         try await db.collection("App").document(userId).collection("categorys").addDocument(data: newCategory)
@@ -51,8 +53,9 @@ class CategoryController: ObservableObject {
             .collection("categorys")
             .document(category.id!)
         
-        let updateField = [
+        let updateField: [String:Any] = [
             "categoryName": category.categoryName,
+            "tagId": category.tagId!
         ]
         
         try await docRef.updateData(updateField)
@@ -72,5 +75,18 @@ class CategoryController: ObservableObject {
             .document(userId)
             
         try await docRef.delete()
+    }
+    
+    func manageImportant(userId: String, categoryId: String, isAdd: Bool) async throws{
+        let docRef = db.collection("App")
+            .document(userId)
+            .collection("categorys")
+            .document(categoryId)
+        
+        let updateField = [
+            "important": isAdd
+        ]
+        
+        try await docRef.updateData(updateField)
     }
 }
